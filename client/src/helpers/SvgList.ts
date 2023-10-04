@@ -1,0 +1,26 @@
+const svgList = {
+    main: "svg-main",
+    tradeIn: "svg-tradeIn",
+    man_hello: "svg-manHello",
+    guard: "svg-guard",
+    delivery: "delivery",
+    hand_many: "svg-handPay",
+    fire: "svg-hot",
+    like_hand: "svg-like-hand",
+    addres_book: "svg-addres-book",
+    menu: "svg-menu",
+    menuBlack: "svg-menu-black",
+    bag_store_black: "svg-bagStore-black",
+    bag_store: "svg-bagStore",
+    tools: "svg-tools",
+    toolsBlack: "svg-tools-black",
+    arrow_blue: "svg-arrow-blue",
+    iphone: "svg-iphone",
+    ipad: "svg-ipad",
+    mac: "svg-mac",
+    imac: "svg-imac",
+    iwatch: "svg-iwatch",
+    airPods: "svg-airPods",
+    info: "svg-info"
+}
+export default svgList;

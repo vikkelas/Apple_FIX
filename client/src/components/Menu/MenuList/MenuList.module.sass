@@ -1,0 +1,26 @@
+@import "@/styles/mixin"
+.container
+    position: absolute
+    top: 0
+    left: 0
+    height: 100vh
+    width: 100%
+    background: var(--wrap-black, rgba(20, 35, 64, 0.20))
+    z-index: 5
+    display: flex
+    flex-direction: column
+    justify-content: flex-end
+    align-items: center
+    pointer-events: auto
+    &MenuList
+        max-height: 75%
+        overflow: scroll
+        padding: 20px
+        display: flex
+        flex-direction: column
+        gap: 10px
+        border-radius: 15px 15px 0 0
+        background: var(--white, #FFF)
+        box-shadow: 0 0 10px 0 #DEEAFF
+        width: 350px
+        margin-bottom: 80px

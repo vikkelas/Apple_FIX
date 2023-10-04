@@ -1,0 +1,28 @@
+{
+  "name": "next-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "clsx": "^2.0.0",
+    "framer-motion": "^10.16.4",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "sass": "^1.68.0",
+    "swiper": "^10.3.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/uuid": "^9.0.4",
+    "typescript": "latest"
+  }
+}
