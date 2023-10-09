@@ -24,7 +24,7 @@ class DeviceColorController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in redux.
      */
     public function store(Request $request)
     {
@@ -48,7 +48,7 @@ class DeviceColorController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in redux.
      */
     public function update(Request $request, string $id)
     {
@@ -56,7 +56,7 @@ class DeviceColorController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from redux.
      */
     public function destroy(string $id)
     {

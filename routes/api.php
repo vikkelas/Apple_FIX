@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\DeviceTypeController;
 use \App\Http\Controllers\DeviceColorController;
+use \App\Http\Controllers\DeviceModelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get('types/all', [DeviceTypeController::class, 'cleared_types']);
 Route::resource('types',DeviceTypeController::class)->only(['show', 'index']);
+Route::resource('models',DeviceModelController::class)->only(['show', 'index']);
 
 Route::resource('colors',DeviceColorController::class)->only(['show', 'index']);
