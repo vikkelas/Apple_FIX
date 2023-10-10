@@ -134,8 +134,8 @@ class DeviceModelSeeder extends Seeder
         ]);
         //watch
         DB::table('device_models')->insert([
-            "title" => "Watch SE 2022 40mm",
-            "slug" => "watch_SE_2022_40mm",
+            "title" => "Watch SE 40mm",
+            "slug" => "watch_SE_40mm",
             "created_at" => new DateTime('now'),
             "updated_at" => new DateTime('now'),
             "device_type_id" => 5
@@ -150,24 +150,48 @@ class DeviceModelSeeder extends Seeder
         ]);
 
         DB::table('device_models')->insert([
-            "title" => "Watch SE 2020 44mm",
-            "slug" => "watch_SE_2020_44mm",
+            "title" => "Watch SE 44mm",
+            "slug" => "watch_SE_44mm",
             "created_at" => new DateTime('now'),
             "updated_at" => new DateTime('now'),
             "device_type_id" => 5
         ]);
 
         DB::table('device_models')->insert([
-            "title" => "Watch S8 45mm",
-            "slug" => "watch_S8_45mm",
+            "title" => "Watch SE 2022 40mm",
+            "slug" => "watch_SE_2022_40mm",
             "created_at" => new DateTime('now'),
             "updated_at" => new DateTime('now'),
             "device_type_id" => 5
         ]);
 
         DB::table('device_models')->insert([
-            "title" => "Watch Ultra 49mm",
-            "slug" => "watch_ultra_49mm",
+            "title" => "Watch SE 2022 44mm",
+            "slug" => "watch_SE_2022_44mm",
+            "created_at" => new DateTime('now'),
+            "updated_at" => new DateTime('now'),
+            "device_type_id" => 5
+        ]);
+
+        DB::table('device_models')->insert([
+            "title" => "Watch S9 45mm",
+            "slug" => "watch_S9_45mm",
+            "created_at" => new DateTime('now'),
+            "updated_at" => new DateTime('now'),
+            "device_type_id" => 5
+        ]);
+
+        DB::table('device_models')->insert([
+            "title" => "Watch S9 41mm",
+            "slug" => "watch_S9_41mm",
+            "created_at" => new DateTime('now'),
+            "updated_at" => new DateTime('now'),
+            "device_type_id" => 5
+        ]);
+
+        DB::table('device_models')->insert([
+            "title" => "Watch Ultra 2 49mm",
+            "slug" => "watch_ultra_2_49mm",
             "created_at" => new DateTime('now'),
             "updated_at" => new DateTime('now'),
             "device_type_id" => 5

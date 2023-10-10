@@ -13,6 +13,7 @@ const ModelsList:React.FC<{ models:ResponseTypeModelI[],colors:ResponseDeviceCol
         <section className={style.listCard}>
             <Swiper
                 spaceBetween={15}
+                slidesPerView={1.15}
                 className={style.listCardSwiper}>
                 {modelsFilter.map(i=>{
                     return (

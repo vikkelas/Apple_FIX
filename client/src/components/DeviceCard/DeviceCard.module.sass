@@ -1,0 +1,59 @@
+@import "@/styles/mixin"
+.device
+    padding: 20px
+    &Card
+        width: 100%
+        padding: 30px
+        border-radius: 15px
+        background-color: white
+        box-shadow: 0 0 10px 0 #DEEAFF
+        display: flex
+        flex-direction: column
+        gap: 13px
+        &Header
+            display: flex
+            align-items: center
+            padding: 3px
+            gap: 15px
+            &Icon
+                width: 26px
+                height: 26px
+                display: flex
+                align-items: flex-start
+                justify-content: center
+                padding: 0 0 3px 0
+                svg
+                    height: 100%
+                    width: auto
+            h1
+                @include title
+        &Main
+            display: flex
+            flex-direction: column
+            gap: 15px
+            &Photo
+                position: relative
+                width: 100%
+                height: 250px
+                img
+                    object-fit: contain
+                    height: 100%
+                    width: auto
+            &SelectTitle
+                @include SubTitle
+        &Footer
+            display: flex
+            flex-direction: column
+            gap: 13px
+            &PriceBox
+                display: flex
+                justify-content: space-between
+                align-items: center
+                padding-top: 6px
+                span
+                    font-family: MontSemiBold,sans-serif
+                    font-size: 17px
+                    color: $black
+                    line-height: normal
+                button
+                    @include button

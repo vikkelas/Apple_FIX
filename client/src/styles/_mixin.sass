@@ -3,8 +3,34 @@ $accent:#4891FF
 $black: #142340
 
 @mixin title
-    font-family: MontBold, sans-serif
+    font-family: MontSemiBold, sans-serif
     font-size: 21px
     line-height: normal
     color: $black
+
+@mixin SubTitle
+    font-family: MontSemiBold, sans-serif
+    font-size: 14px
+    line-height: normal
+    color: $black
+@mixin LightText
+    font-family: MontLight, sans-serif
+    font-size: 14px
+    color: $black
+    line-height: normal
+
+
+@mixin button
+    padding: 8px 13px
+    width: max-content
+    font-family: MontSemiBold, sans-serif
+    font-size: 14px
+    background-color: $accent
+    color: white
+    line-height: normal
+    border-radius: 8px
+    border: 0.5px solid #F7FAFF
+    &:disabled
+        background-color: rgba(72, 145, 255, 0.35)
+
 

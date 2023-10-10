@@ -125,5 +125,13 @@ class DeviceColorSeeder extends Seeder
             "updated_at" => new DateTime('now'),
         ]);
 
+        DB::table('device_colors')->insert([
+            "title" => "Titanium",
+            "first_color"=>"#77756E",
+            "second_color"=>"#CFBEB6",
+            "created_at" => new DateTime('now'),
+            "updated_at" => new DateTime('now'),
+        ]);
+
     }
 }

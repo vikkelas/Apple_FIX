@@ -1,14 +1,67 @@
+@import "@/styles/mixin"
 .card
+    box-sizing: content-box
+    max-width: 284px
     padding: 26px 30px
     border-radius: 15px
+    display: flex
+    flex-direction: column
+    gap: 13px
     background: var(--white, #FFF)
     box-shadow: 0 0 10px 0 #DEEAFF
-    &Image
-        position: relative
-        height: 200px
+    &Header
+        min-width: max-content
+        max-width: 100%
+        width: 100%
         display: flex
-        align-items: center
-        img
-            height: 100%
-            width: auto
-            object-fit: contain
+        justify-content: space-between
+        gap: 16px
+        &Title
+            @include title
+            display: block
+    &Main
+        display: flex
+        flex-direction: column
+        gap: 15px
+        &Image
+            position: relative
+            height: 300px
+            display: flex
+            align-items: center
+            img
+                height: 100%
+                width: auto
+                object-fit: contain
+        &Colors
+            display: flex
+            gap: 10px
+            align-items: center
+            span
+                @include LightText
+            &List
+                gap: 15px
+                display: flex
+    &Footer
+        display: flex
+        flex-direction: column
+        gap: 19px
+        &Memory
+            @include LightText
+            display: flex
+            gap: 10px
+            align-items: center
+            &List
+                gap: 10px
+                display: flex
+        &PriceBox
+            display: flex
+            justify-content: space-between
+            align-items: center
+            span
+                color: $black
+                font-family: MontSemiBold, sans-serif
+                font-size: 17px
+                line-height: normal
+            &Btn
+                @include button
+

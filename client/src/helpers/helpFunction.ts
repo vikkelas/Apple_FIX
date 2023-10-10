@@ -15,4 +15,12 @@ const getNamePhoto = (typeName: string, color:string) => {
     return `${typeName.split(' ').join('-')}-${color}.jpg`.toLowerCase()
 }
 
-export {respColors, getNamePhoto};
+const minimumPrice = (priceList: number[]):number => {
+    let minimumPrice = priceList[0];
+    priceList.forEach(item => {
+        if(item<minimumPrice)minimumPrice=item;
+    })
+    return minimumPrice;
+}
+
+export {respColors, getNamePhoto, minimumPrice};

@@ -21,6 +21,7 @@ const svgList = {
     imac: "svg-imac",
     iwatch: "svg-iwatch",
     airPods: "svg-airPods",
-    info: "svg-info"
+    info: "svg-info",
+    arrowLeft: "svg-arrow-left"
 }
 export default svgList;

@@ -91,5 +91,7 @@
             <path fill="#fff" d="M0 0h20v20H0z"/>
         </clipPath>
     </defs>
+</symbol><symbol fill="none" viewBox="0 0 9 18" id="svg-arrow-left" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 17.25 1.5 9.375 8 1.5" stroke="#4891FF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
 </svg>
