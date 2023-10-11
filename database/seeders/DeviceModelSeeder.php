@@ -134,8 +134,8 @@ class DeviceModelSeeder extends Seeder
         ]);
         //watch
         DB::table('device_models')->insert([
-            "title" => "Watch SE 40mm",
-            "slug" => "watch_SE_40mm",
+            "title" => "Watch SE 2020 40mm",
+            "slug" => "watch_SE_2020_40mm",
             "created_at" => new DateTime('now'),
             "updated_at" => new DateTime('now'),
             "device_type_id" => 5
@@ -150,8 +150,8 @@ class DeviceModelSeeder extends Seeder
         ]);
 
         DB::table('device_models')->insert([
-            "title" => "Watch SE 44mm",
-            "slug" => "watch_SE_44mm",
+            "title" => "Watch SE 2020 44mm",
+            "slug" => "watch_SE_2020_44mm",
             "created_at" => new DateTime('now'),
             "updated_at" => new DateTime('now'),
             "device_type_id" => 5
@@ -194,7 +194,8 @@ class DeviceModelSeeder extends Seeder
             "slug" => "watch_ultra_2_49mm",
             "created_at" => new DateTime('now'),
             "updated_at" => new DateTime('now'),
-            "device_type_id" => 5
+            "device_type_id" => 5,
+            "pic_type" => "loop_type"
         ]);
     }
 }

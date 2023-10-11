@@ -1,6 +1,6 @@
 import {ResponseDeviceColorI} from "../../interface/ResponseInterface";
 
-const respColors = (colorsDB:ResponseDeviceColorI[], colorId: number): {name: string, firstColor: string, secondColor: string}=>{
+const respColors = (colorsDB:ResponseDeviceColorI[], colorId: number): {name: string, firstColor: string, secondColor: string}|undefined=>{
     const element = colorsDB.find(item=>item.id===colorId)
     if(element){
         return{
@@ -11,8 +11,9 @@ const respColors = (colorsDB:ResponseDeviceColorI[], colorId: number): {name: st
     }
 }
 
-const getNamePhoto = (typeName: string, color:string) => {
-    return `${typeName.split(' ').join('-')}-${color}.jpg`.toLowerCase()
+const getNamePhoto = (typeName: string, color:string, longName: boolean | undefined = false) => {
+
+    return `${typeName.split(' ').join('-')}-${longName?color.split(' ').join('-'):color}.jpg`.toLowerCase()
 }
 
 const minimumPrice = (priceList: number[]):number => {

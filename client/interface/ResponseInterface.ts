@@ -19,6 +19,7 @@ export interface ResponseTypeModelI {
     title: string;
     slug: string;
     device_type_id: number;
+    pic_type: string;
     device_services: []
     devices: ResponseDeviceI[]
 }

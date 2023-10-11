@@ -11,8 +11,9 @@ import ColorPin from "@/components/Assets/ColorPin";
 import {v4 as uuidv4} from 'uuid';
 import Link from "next/link";
 export type StateDevice = {
+    loop_type: string[]|[];
     color: number[]|[];
-    memory: string[]|[];
+    memory: number[]|[];
     loop: string[]|[];
     connection: string[]|[];
     country: string[]|[];
@@ -26,6 +27,7 @@ const ModelCard:React.FC<{model:ResponseTypeModelI, colors:ResponseDeviceColorI[
     const {devices, title} = model
     const [namePhoto, setNamePhoto] = useState('')
     const [stateCard, setStateCard] = useState<StateDevice>({
+        loop_type: [],
         color: [],
         memory: [],
         loop: [],
@@ -33,7 +35,7 @@ const ModelCard:React.FC<{model:ResponseTypeModelI, colors:ResponseDeviceColorI[
         country: [],
         price: null
     })
-    const changeState = (name, value)=>{
+    const changeState = (name: string, value: string|number)=>{
         setStateCard((prevState)=>({...prevState, [name]: value}))
     }
 
@@ -44,12 +46,22 @@ const ModelCard:React.FC<{model:ResponseTypeModelI, colors:ResponseDeviceColorI[
 
     //
     useEffect(() => {
-        if(stateCard.color.length){
-            const getInfoColor = respColors(colors, stateCard.color[0])
-            console.log(getNamePhoto(title, getInfoColor.name))
-            setNamePhoto(getNamePhoto(title, getInfoColor.name))
+        const picType = model.pic_type;
+        switch (picType){
+            case ('color'):
+                if(stateCard.color.length){
+                    const getInfoColor = respColors(colors, stateCard.color[0])
+                    getInfoColor&&setNamePhoto(getNamePhoto(title, getInfoColor.name))
+                }
+                break;
+            case ('loop_type'):
+                if(stateCard.loop_type.length){
+                    setNamePhoto(getNamePhoto(title, stateCard.loop_type[0], true))
+                }
+                break;
         }
-    }, [stateCard.color]);
+
+    }, [stateCard.color, stateCard.loop_type]);
 
 
 

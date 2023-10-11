@@ -11,7 +11,7 @@ import {StateFilter} from "@/components/DeviceCard/DeviceCard";
 type PropsFilter = {
     title: string;
     listFilter: string[]|number[];
-    handleStateFilter: (select,value)=>void,
+    handleStateFilter: (select: string,value:string|number)=>void,
     idItem: string,
     stateName: string,
     colorData?: ResponseDeviceColorI[]
@@ -45,6 +45,7 @@ const FilterCard:React.FC<PropsFilter> = (
                         className={clsx([
                             style.filterListItem,
                             stateName!=='color'&&style.paddingItemText,
+                            // @ts-ignore
                             stateFilter[stateName]===item&&style.activeItem
                         ])}
                     >

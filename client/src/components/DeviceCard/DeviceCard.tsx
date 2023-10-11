@@ -14,7 +14,7 @@ import Link from "next/link";
 export type StateFilter = {
     color: null | number;
     country: null | string;
-    conection: null | string;
+    connection: null | string;
     price: null | number;
     loop: null | string;
     memory: null | string;
@@ -31,10 +31,11 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
     const [buyBtnState, setBuyBtnState] = useState(true);
     const [filterDevice, setFilterDevice] = useState<ResponseDeviceI[]>(devices)
     const [namePhoto, setNamePhoto] = useState<string|null>(null)
+    const picType = modelDevice.pic_type;
     const [stateFilter, setStateFilter] = useState<StateFilter>({
         color: null,
         country: null,
-        conection: null,
+        connection: null,
         price: null,
         loop: null,
         memory: null,
@@ -46,10 +47,11 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         color: [],
         country: [],
         loop: [],
-        price: null
+        price: null,
+        loop_type: []
     })
     // filter
-    const handleStateFilter = (name, value) => {
+    const handleStateFilter = (name: string, value: string|number) => {
        setStateFilter((prevState)=>({...prevState, [name]: value}))
     }
 
@@ -57,14 +59,14 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         setStateFilter({
             color: null,
             country: null,
-            conection: null,
+            connection: null,
             price: null,
             loop: null,
             memory: null,
         })
     }
 
-    const optionsFilter = (name, value, i) => {
+    const optionsFilter = (name:string, value:string|number, i:ResponseDeviceI) => {
         switch (name){
             case ("color"):
                 if(i.device_color_id)return i.device_color_id===value;
@@ -76,11 +78,12 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                 if(i.memory)return  i.memory.replace(/\D/g, '')===value;
                 break;
             default:
+                // @ts-ignore
                 return i[name]===value
         }
     }
 
-    const handleFilterDevice = (name, value) => {
+    const handleFilterDevice = (name:string, value: string|number) => {
         const newFilterDevice = filterDevice.filter(i => {
             return optionsFilter(name, value, i)
         })
@@ -100,6 +103,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         if(filterDevice.length===1){
             const deviceSelect = filterDevice[0]
             for (const deviceKey in deviceSelect) {
+                // @ts-ignore
                 if(deviceSelect[deviceKey]){
                     let name:string|null = null;
                     let value: string|number|null = null;
@@ -125,10 +129,11 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                         default:
                             if(stateFilter.hasOwnProperty(deviceKey)){
                                 name = deviceKey;
+                                // @ts-ignore
                                 value = deviceSelect[deviceKey];
                             }
                     }
-                    handleStateFilter(name, value)
+                    name&&value&&handleStateFilter(name, value)
                 }
             }
             setBuyBtnState(false)
@@ -138,17 +143,39 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
     }, [filterDevice]);
 
     useEffect(() => {
+        switch(picType){
+            case ('color'):
+                if(!stateFilter.color&&state.color.length){
+                    handleFilterDevice('color', state.color[0])
+                }
+                break;
+            case('loop_type'):
+                if(!stateFilter.loop&&state.loop.length){
+                    setNamePhoto(getNamePhoto(title, state.loop[0].replace(/(\([A-Za-z\-\/]{1,3}\))/gm,''), true))
+                }
+                break;
+        }
         if(!stateFilter.color&&state.color.length){
             handleFilterDevice('color', state.color[0])
         }
     }, [state.color]);
 
     useEffect(() => {
-        if(stateFilter.color){
-            const getInfoColor = respColors(colorData, stateFilter.color)
-            setNamePhoto(getNamePhoto(title, getInfoColor.name))
+        switch (picType){
+            case ('color'):
+                if(stateFilter.color){
+                    const getInfoColor = respColors(colorData, stateFilter.color)
+                    getInfoColor&&setNamePhoto(getNamePhoto(title, getInfoColor.name))
+                }
+                break;
+            case ('loop_type'):
+                if(stateFilter.loop){
+                    setNamePhoto(getNamePhoto(title, stateFilter.loop.replace(/(\([A-Za-z\-\/]{1,3}\))/gm,''), true))
+                }
+                break;
         }
-    }, [stateFilter.color]);
+
+    }, [stateFilter.color,stateFilter.loop]);
 
     useEffect(() => {
         filterOptions(devices, setState)
@@ -178,7 +205,6 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                     {state.color.length?<FilterCard
                         stateFilter={stateFilter}
                         title={'Цвет:'}
-                        listItem={state.color}
                         listFilter={state.color}
                         handleStateFilter={handleFilterDevice}
                         idItem={'device_color_id'}
@@ -190,7 +216,6 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                     {state.memory.length?<FilterCard
                         stateFilter={stateFilter}
                         title={'Память:'}
-                        listItem={state.memory}
                         listFilter={state.memory}
                         handleStateFilter={handleFilterDevice}
                         idItem={'memory'}
@@ -199,7 +224,6 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                     {state.country.length?<FilterCard
                         stateFilter={stateFilter}
                         title={'Страна:'}
-                        listItem={state.country}
                         listFilter={state.country}
                         handleStateFilter={handleFilterDevice}
                         idItem={'country'}
@@ -208,7 +232,6 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                     {state.connection.length?<FilterCard
                         stateFilter={stateFilter}
                         title={'Связь:'}
-                        listItem={state.connection}
                         listFilter={state.connection}
                         handleStateFilter={handleFilterDevice}
                         idItem={'connection'}
@@ -217,7 +240,6 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                     {state.loop.length?<FilterCard
                         stateFilter={stateFilter}
                         title={'Ремешок:'}
-                        listItem={state.loop}
                         listFilter={state.loop}
                         handleStateFilter={handleFilterDevice}
                         idItem={'loop'}

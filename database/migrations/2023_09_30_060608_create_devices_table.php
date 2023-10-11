@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('loop_type')->nullable();
             $table->string('loop_size')->nullable();
             $table->string('year')->nullable();
-            $table->string('pic-type')->default('color');
             $table->unsignedInteger('price');
             $table->timestamps();
             $table->softDeletes();

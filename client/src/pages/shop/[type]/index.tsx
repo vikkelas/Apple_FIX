@@ -5,7 +5,7 @@ import {NextPage} from "next";
 import {ResponseDeviceColorI, ResponseTypesI} from "../../../../interface/ResponseInterface";
 import SwiperTypes from "@/components/SwiperTypes/SwiperTypes";
 
-export async function getServerSideProps(ctx){
+export async function getServerSideProps(ctx: { params: { type: string; }; }){
     const {type} = ctx.params;
     try {
         const typeData = await fetch(`${process.env.APP_URL_BACKEND}/api/types/${type}`)

@@ -338,7 +338,6 @@ class DeviceSeeder extends Seeder
             "loop_type" => "Alpine Loop Blue",
             "device_color_id" => 15,
             "device_model_id" => 23,
-            "pic-type" => "loop_type"
         ]);
 
         DB::table('devices')->insert([
@@ -348,7 +347,6 @@ class DeviceSeeder extends Seeder
             "loop_type" => "Alpine Loop Blue",
             "device_color_id" => 15,
             "device_model_id" => 23,
-            "pic-type" => "loop_type"
         ]);
 
         DB::table('devices')->insert([
@@ -358,7 +356,6 @@ class DeviceSeeder extends Seeder
             "loop_type" => "Alpine Loop Blue",
             "device_color_id" => 15,
             "device_model_id" => 23,
-            "pic-type" => "loop_type"
         ]);
 
         DB::table('devices')->insert([
@@ -368,7 +365,6 @@ class DeviceSeeder extends Seeder
             "loop_type" => "Ocean Band Orange",
             "device_color_id" => 15,
             "device_model_id" => 23,
-            "pic-type" => "loop_type"
         ]);
 
         DB::table('devices')->insert([
@@ -378,7 +374,6 @@ class DeviceSeeder extends Seeder
             "loop_type" => "Ocean Band Blue",
             "device_color_id" => 15,
             "device_model_id" => 23,
-            "pic-type" => "loop_type"
         ]);
 
         DB::table('devices')->insert([
@@ -388,7 +383,6 @@ class DeviceSeeder extends Seeder
             "loop_type" => "Alpine Loop Olive",
             "device_color_id" => 15,
             "device_model_id" => 23,
-            "pic-type" => "loop_type"
         ]);
 
         DB::table('devices')->insert([
@@ -398,7 +392,6 @@ class DeviceSeeder extends Seeder
             "loop_type" => "Trail Loop Blue",
             "device_color_id" => 15,
             "device_model_id" => 23,
-            "pic-type" => "loop_type"
         ]);
 
         DB::table('devices')->insert([
@@ -408,7 +401,6 @@ class DeviceSeeder extends Seeder
             "loop_type" => "Trail Loop Green",
             "device_color_id" => 15,
             "device_model_id" => 23,
-            "pic-type" => "loop_type"
         ]);
 
         DB::table('devices')->insert([
@@ -418,7 +410,6 @@ class DeviceSeeder extends Seeder
             "loop_type" => "Alpine Loop Indigo",
             "device_color_id" => 15,
             "device_model_id" => 23,
-            "pic-type" => "loop_type"
         ]);
 
         DB::table('devices')->insert([
@@ -428,7 +419,6 @@ class DeviceSeeder extends Seeder
             "loop_type" => "Trail Loop Green",
             "device_color_id" => 15,
             "device_model_id" => 23,
-            "pic-type" => "loop_type"
         ]);
 
         DB::table('devices')->insert([
@@ -438,7 +428,6 @@ class DeviceSeeder extends Seeder
             "loop_type" => "Alpine Loop Indigo",
             "device_color_id" => 15,
             "device_model_id" => 23,
-            "pic-type" => "loop_type"
         ]);
 
         DB::table('devices')->insert([
@@ -448,7 +437,6 @@ class DeviceSeeder extends Seeder
             "loop_type" => "Alpine Loop Olive",
             "device_color_id" => 15,
             "device_model_id" => 23,
-            "pic-type" => "loop_type"
         ]);
 
         DB::table('devices')->insert([
@@ -458,7 +446,6 @@ class DeviceSeeder extends Seeder
             "loop_type" => "Alpine Loop Olive",
             "device_color_id" => 15,
             "device_model_id" => 23,
-            "pic-type" => "loop_type"
         ]);
 
         DB::table('devices')->insert([
@@ -468,7 +455,6 @@ class DeviceSeeder extends Seeder
             "loop_type" => "Ocean Band White",
             "device_color_id" => 15,
             "device_model_id" => 23,
-            "pic-type" => "loop_type"
         ]);
     }
 }
