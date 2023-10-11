@@ -238,7 +238,7 @@ class DeviceSeeder extends Seeder
         DB::table('devices')->insert([
             "country" => "Америка",
             "price" => 62000,
-            "loop_size" => "-",
+            "loop_size" => "(-)",
             "device_color_id" => 7,
             "device_model_id" => 21
         ]);
@@ -254,7 +254,7 @@ class DeviceSeeder extends Seeder
         DB::table('devices')->insert([
             "country" => "Америка",
             "price" => 60500,
-            "loop_size" => "-",
+            "loop_size" => "(-)",
             "device_color_id" => 9,
             "device_model_id" => 21
         ]);
@@ -302,7 +302,7 @@ class DeviceSeeder extends Seeder
         DB::table('devices')->insert([
             "country" => "Америка",
             "price" => 56500,
-            "loop_size" => "-",
+            "loop_size" => "(-)",
             "device_color_id" => 3,
             "device_model_id" => 22
         ]);
@@ -318,7 +318,7 @@ class DeviceSeeder extends Seeder
         DB::table('devices')->insert([
             "country" => "Америка",
             "price" => 45500,
-            "loop_size" => "-",
+            "loop_size" => "(-)",
             "device_color_id" => 7,
             "device_model_id" => 22
         ]);
@@ -361,7 +361,7 @@ class DeviceSeeder extends Seeder
         DB::table('devices')->insert([
             "country" => "Америка",
             "price" => 99000,
-            "loop_size" => "-",
+            "loop_size" => "(-)",
             "loop_type" => "Ocean Band Orange",
             "device_color_id" => 15,
             "device_model_id" => 23,
@@ -370,7 +370,7 @@ class DeviceSeeder extends Seeder
         DB::table('devices')->insert([
             "country" => "Америка",
             "price" => 99500,
-            "loop_size" => "-",
+            "loop_size" => "(-)",
             "loop_type" => "Ocean Band Blue",
             "device_color_id" => 15,
             "device_model_id" => 23,
@@ -451,7 +451,7 @@ class DeviceSeeder extends Seeder
         DB::table('devices')->insert([
             "country" => "Америка",
             "price" => 99000,
-            "loop_size" => "-",
+            "loop_size" => "(-)",
             "loop_type" => "Ocean Band White",
             "device_color_id" => 15,
             "device_model_id" => 23,

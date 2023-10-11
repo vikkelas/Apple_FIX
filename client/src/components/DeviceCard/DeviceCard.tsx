@@ -100,6 +100,10 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
     }
 
     useEffect(() => {
+
+    }, [state]);
+
+    useEffect(() => {
         if(filterDevice.length===1){
             const deviceSelect = filterDevice[0]
             for (const deviceKey in deviceSelect) {
@@ -170,11 +174,11 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                 break;
             case ('loop_type'):
                 if(stateFilter.loop){
-                    setNamePhoto(getNamePhoto(title, stateFilter.loop.replace(/(\([A-Za-z\-\/]{1,3}\))/gm,''), true))
+                    const str = stateFilter.loop.replace(/(\([A-Za-z\-\/]{1,3}\))/gm,'').replace(/\s\s*$/gm,'');
+                    setNamePhoto(getNamePhoto(title,str , true))
                 }
                 break;
         }
-
     }, [stateFilter.color,stateFilter.loop]);
 
     useEffect(() => {
