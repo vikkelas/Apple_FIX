@@ -25,6 +25,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         modelDevice,
         colorData
     }) => {
+    console.log(modelDevice);
     const router = useRouter()
     const type = router.query.type;
     const {devices, title, } = modelDevice;
@@ -75,7 +76,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                 const nameLoop = `${i.loop_type?i.loop_type:''}${i.loop_type&&i.loop_size?' ':''}${i.loop_size?i.loop_size:''}`;
                 return nameLoop === value;
             case ("memory"):
-                if(i.memory)return  i.memory.replace(/\D/g, '')===value;
+                if(i.memory)return  +(i.memory.replace(/\D/g, ''))===value;
                 break;
             default:
                 // @ts-ignore
@@ -100,7 +101,40 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
     }
 
     useEffect(() => {
-
+        const firstDevice = devices[0];
+        if(firstDevice){
+            for (const filterStateKey in stateFilter) {
+                switch (filterStateKey){
+                    case ('color'):
+                        handleStateFilter('color', firstDevice.device_color_id);
+                        break;
+                    case ('loop'):
+                        if(firstDevice.loop_type || firstDevice.loop_size){
+                            const nameLoop = `${firstDevice.loop_type?firstDevice.loop_type:''}${firstDevice.loop_type&&firstDevice.loop_size?' ':''}${firstDevice.loop_size?firstDevice.loop_size:''}`;
+                            handleStateFilter('loop', nameLoop);
+                        }
+                        break;
+                    case ('connection'):
+                        if (firstDevice.wifi){
+                            handleStateFilter('connection', firstDevice.wifi);
+                        }
+                        break;
+                    case ('memory'):
+                        if(firstDevice.memory){
+                            const memoryFirst =  `${firstDevice.memory}`.replace(/\D/g, '');
+                            handleStateFilter('memory', memoryFirst);
+                        }
+                        break;
+                    default:
+                        // @ts-ignore
+                        if(firstDevice[filterStateKey]){
+                            // @ts-ignore
+                            handleFilterDevice(filterStateKey, firstDevice[filterStateKey]);
+                        }
+                        break;
+                }
+            }
+        }
     }, [state]);
 
     useEffect(() => {
@@ -146,23 +180,23 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         }
     }, [filterDevice]);
 
-    useEffect(() => {
-        switch(picType){
-            case ('color'):
-                if(!stateFilter.color&&state.color.length){
-                    handleFilterDevice('color', state.color[0])
-                }
-                break;
-            case('loop_type'):
-                if(!stateFilter.loop&&state.loop.length){
-                    setNamePhoto(getNamePhoto(title, state.loop[0].replace(/(\([A-Za-z\-\/]{1,3}\))/gm,''), true))
-                }
-                break;
-        }
-        if(!stateFilter.color&&state.color.length){
-            handleFilterDevice('color', state.color[0])
-        }
-    }, [state.color]);
+    // useEffect(() => {
+    //     switch(picType){
+    //         case ('color'):
+    //             if(!stateFilter.color&&state.color.length){
+    //                 handleFilterDevice('color', state.color[0])
+    //             }
+    //             break;
+    //         case('loop_type'):
+    //             if(!stateFilter.loop&&state.loop.length){
+    //                 setNamePhoto(getNamePhoto(title, state.loop[0].replace(/(\([A-Za-z\-\/]{1,3}\))/gm,''), true))
+    //             }
+    //             break;
+    //     }
+    //     if(!stateFilter.color&&state.color.length){
+    //         handleFilterDevice('color', state.color[0])
+    //     }
+    // }, [state.color]);
 
     useEffect(() => {
         switch (picType){
@@ -179,7 +213,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                 }
                 break;
         }
-    }, [stateFilter.color,stateFilter.loop]);
+    }, [stateFilter.color, stateFilter.loop]);
 
     useEffect(() => {
         filterOptions(devices, setState)

@@ -1,6 +1,4 @@
 import React from 'react';
-import {useSelector} from "react-redux";
-import {AppState} from "@/redux/rootReducer";
 import {v4 as uuidv4} from 'uuid';
 import {ResponseDeviceColorI} from "../../../../interface/ResponseInterface";
 import ColorPin from "@/components/Assets/ColorPin";
@@ -46,7 +44,7 @@ const FilterCard:React.FC<PropsFilter> = (
                             style.filterListItem,
                             stateName!=='color'&&style.paddingItemText,
                             // @ts-ignore
-                            stateFilter[stateName]===item&&style.activeItem
+                            stateFilter[stateName]==item&&style.activeItem
                         ])}
                     >
                         {typeof item==='string'&&stateName!=='memory'?item:null}

@@ -16,7 +16,7 @@ class DeviceModel extends Model
 
     public function devices(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Device::class);
+        return $this->hasMany(Device::class)->orderBy('device_color_id');
     }
 
     public function deviceServices(): \Illuminate\Database\Eloquent\Relations\HasMany

@@ -31,7 +31,7 @@ class DeviceTypeService
         $filterTypes = $this->types->where("slug", $slug);
         foreach ($filterTypes as $type){
             foreach ($type->deviceModels as $model){
-                $model->devices;
+                $model->devices->sortBy('device_color_id');
             };
         }
         return $filterTypes->first();
