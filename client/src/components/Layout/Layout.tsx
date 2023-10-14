@@ -3,8 +3,8 @@ import Head from "next/head";
 import NavigateMenu from "@/components/Menu/NavigateMenu/NavigateMenu";
 import MenuList from "@/components/Menu/MenuList/MenuList";
 import menuList from "@/data/MenuList";
-import {MenuI} from "../../../interface/MenuInterface";
-import {ResponseTypesI} from "../../../interface/ResponseInterface";
+import {MenuI} from "@/interface/MenuInterface";
+import {ResponseTypesI} from "@/interface/ResponseInterface";
 import parseMenuList from "@/helpers/parseMenuList";
 import {AnimatePresence} from "framer-motion";
 
@@ -52,6 +52,7 @@ const Layout:React.FC<LayoutProps> = ({description, title, keywords='', children
             .then(r=>r.json())
             .then(res=>setTypesModals(res));
     }
+
     useEffect(() => {
         getServiceList().then()
     }, []);

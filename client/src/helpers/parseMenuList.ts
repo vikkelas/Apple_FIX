@@ -1,5 +1,5 @@
-import {ResponseTypesI} from "../../interface/ResponseInterface";
-import {MenuI} from "../../interface/MenuInterface";
+import {ResponseTypesI} from "@/interface/ResponseInterface";
+import {MenuI} from "@/interface/MenuInterface";
 
 const parseMenuList = (list:ResponseTypesI[], typeMenu: string):MenuI[] | [] => {
     const arrayMenu= [];
@@ -31,7 +31,8 @@ const parseMenuList = (list:ResponseTypesI[], typeMenu: string):MenuI[] | [] => 
                     icon: item.icon_name,
                     title: `Ремонт ${item.title}`,
                     link: null,
-                    subMenu: arrayModelsServices
+                    subMenu: arrayModelsServices,
+                    type: 'service'
                 })
             })
             return arrayMenu;

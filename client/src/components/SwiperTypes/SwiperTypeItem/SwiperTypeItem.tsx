@@ -1,5 +1,5 @@
 import React from 'react';
-import {ResponseTypesI} from "../../../../interface/ResponseInterface";
+import {ResponseTypesI} from "@/interface/ResponseInterface";
 import IconSVG from "@/components/Assets/IconSVG";
 import SvgList from "@/helpers/SvgList";
 import style from './SwiperTypeItem.module.sass'

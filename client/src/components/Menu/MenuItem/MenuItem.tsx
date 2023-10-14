@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {MenuI} from "../../../../interface/MenuInterface";
+import {MenuI} from "@/interface/MenuInterface";
 import IconSVG from "@/components/Assets/IconSVG";
 import SvgList from "@/helpers/SvgList";
 import Link from "next/link";
@@ -35,6 +35,7 @@ const MenuItem:React.FC<
             router.push(link).then()
         }else{
             setSubMenuHidden(!subMenuHidden)
+            return
         }
         setActiveMenu(null);
     }

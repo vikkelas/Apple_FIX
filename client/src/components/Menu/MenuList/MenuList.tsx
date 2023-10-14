@@ -1,7 +1,7 @@
 import React from 'react';
 import {v4 as uuidv4} from 'uuid';
 import style from './MenuList.module.sass';
-import {MenuI} from "../../../../interface/MenuInterface";
+import {MenuI} from "@/interface/MenuInterface";
 import MenuItem from "@/components/Menu/MenuItem/MenuItem";
 import {AnimatePresence, motion} from 'framer-motion';
 
@@ -25,13 +25,17 @@ const MenuList:React.FC<Props> = ({menuLust, setActiveMenu}) => {
                 exit={{opacity: 0, y: 100}}
                 className={style.containerMenuList}>
                 <AnimatePresence key={'menuLists'} mode={"wait"}>
-                    {menuLust.map((item, index)=>
-                        <MenuItem
-                            key={uuidv4()}
-                            itemMenu={item}
-                            index={index}
-                            setActiveMenu={setActiveMenu}
-                        />)}
+                    {menuLust.map((item, index)=>{
+                        if(item.type==="service" && !item.subMenu?.length)return;
+                        return (
+                            <MenuItem
+                                key={uuidv4()}
+                                itemMenu={item}
+                                index={index}
+                                setActiveMenu={setActiveMenu}
+                            />
+                        )
+                    })}
                 </AnimatePresence>
             </motion.ul>
         </motion.div>

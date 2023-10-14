@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from "@/components/Layout/Layout";
 import ModelsList from "@/components/Models/ModelsList/ModelsList";
 import {NextPage} from "next";
-import {ResponseDeviceColorI, ResponseTypesI} from "../../../../interface/ResponseInterface";
+import {ResponseDeviceColorI, ResponseTypesI} from "@/interface/ResponseInterface";
 import SwiperTypes from "@/components/SwiperTypes/SwiperTypes";
 
 export async function getServerSideProps(ctx: { params: { type: string; }; }){

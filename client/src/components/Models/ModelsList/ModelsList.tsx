@@ -1,5 +1,5 @@
 import React from 'react';
-import {ResponseDeviceColorI, ResponseTypeModelI} from "../../../../interface/ResponseInterface";
+import {ResponseDeviceColorI, ResponseTypeModelI} from "@/interface/ResponseInterface";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {v4 as uuidv4} from 'uuid';
 import ModelCard from "@/components/Models/ModelCard/ModelCard";

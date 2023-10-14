@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ResponseDeviceColorI, ResponseTypeModelI} from "../../../../interface/ResponseInterface";
+import {ResponseDeviceColorI, ResponseTypeModelI} from "@/interface/ResponseInterface";
 import filterOptions from "@/helpers/filterOptions";
 import IconSVG from "@/components/Assets/IconSVG";
 import SvgList from "@/helpers/SvgList";

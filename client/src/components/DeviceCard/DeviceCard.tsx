@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import IconSVG from "@/components/Assets/IconSVG";
 import SvgList from "@/helpers/SvgList";
-import {ResponseDeviceColorI, ResponseDeviceI, ResponseTypeModelI} from "../../../interface/ResponseInterface";
+import {ResponseDeviceColorI, ResponseDeviceI, ResponseTypeModelI} from "@/interface/ResponseInterface";
 import {StateDevice} from "@/components/Models/ModelCard/ModelCard";
 import filterOptions from "@/helpers/filterOptions";
 import Image from "next/image";
@@ -10,6 +10,10 @@ import {getNamePhoto, respColors} from "@/helpers/helpFunction";
 import FilterCard from "@/components/DeviceCard/FilterCard/FilterCard";
 import style from './DeviceCard.module.sass';
 import Link from "next/link";
+import {useDispatch} from "react-redux";
+import {changeState} from "@/redux/reducers/orderSlice";
+import {TypeForm} from "@/interface/FormInterface";
+import {DeviceOrder} from "@/redux/interface/OrderInterface";
 
 export type StateFilter = {
     color: null | number;
@@ -25,7 +29,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         modelDevice,
         colorData
     }) => {
-    console.log(modelDevice);
+    const dispatch = useDispatch();
     const router = useRouter()
     const type = router.query.type;
     const {devices, title, } = modelDevice;
@@ -55,7 +59,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
     const handleStateFilter = (name: string, value: string|number) => {
        setStateFilter((prevState)=>({...prevState, [name]: value}))
     }
-
+    // clear state
     const clearStateFilter = () => {
         setStateFilter({
             color: null,
@@ -66,7 +70,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
             memory: null,
         })
     }
-
+    // check select
     const optionsFilter = (name:string, value:string|number, i:ResponseDeviceI) => {
         switch (name){
             case ("color"):
@@ -100,42 +104,24 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         }
     }
 
-    useEffect(() => {
-        const firstDevice = devices[0];
-        if(firstDevice){
-            for (const filterStateKey in stateFilter) {
-                switch (filterStateKey){
-                    case ('color'):
-                        handleStateFilter('color', firstDevice.device_color_id);
-                        break;
-                    case ('loop'):
-                        if(firstDevice.loop_type || firstDevice.loop_size){
-                            const nameLoop = `${firstDevice.loop_type?firstDevice.loop_type:''}${firstDevice.loop_type&&firstDevice.loop_size?' ':''}${firstDevice.loop_size?firstDevice.loop_size:''}`;
-                            handleStateFilter('loop', nameLoop);
-                        }
-                        break;
-                    case ('connection'):
-                        if (firstDevice.wifi){
-                            handleStateFilter('connection', firstDevice.wifi);
-                        }
-                        break;
-                    case ('memory'):
-                        if(firstDevice.memory){
-                            const memoryFirst =  `${firstDevice.memory}`.replace(/\D/g, '');
-                            handleStateFilter('memory', memoryFirst);
-                        }
-                        break;
-                    default:
-                        // @ts-ignore
-                        if(firstDevice[filterStateKey]){
-                            // @ts-ignore
-                            handleFilterDevice(filterStateKey, firstDevice[filterStateKey]);
-                        }
-                        break;
-                }
+    const handleSaveBasket = () => {
+        if(filterDevice.length===1){
+            const memory = stateFilter.memory?stateFilter.memory<100?` ${stateFilter.memory}Тб`:` ${stateFilter.memory}Гб`:null;
+            const color = colorData.find(item=>item.id===stateFilter.color);
+            const loop = stateFilter.loop?`<br>${stateFilter.loop}`:null;
+            const wifi = stateFilter.connection?`<br>${stateFilter.connection}`:null;
+            const infoDevice: DeviceOrder = {
+                title: `${modelDevice.title}${memory?memory:''}<br>${color?color.title:null}`,
+                desc: `${stateFilter.country?stateFilter.country:''}${loop?loop:''}${wifi?wifi:''}`,
+                price: `${filterDevice[0].price}₽`
             }
+            dispatch(changeState([
+                {name:"device", value: infoDevice},
+                {name: "typeForm", value: TypeForm.Order},
+            ]))
+            router.push('/order').then()
         }
-    }, [state]);
+    }
 
     useEffect(() => {
         if(filterDevice.length===1){
@@ -180,24 +166,6 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         }
     }, [filterDevice]);
 
-    // useEffect(() => {
-    //     switch(picType){
-    //         case ('color'):
-    //             if(!stateFilter.color&&state.color.length){
-    //                 handleFilterDevice('color', state.color[0])
-    //             }
-    //             break;
-    //         case('loop_type'):
-    //             if(!stateFilter.loop&&state.loop.length){
-    //                 setNamePhoto(getNamePhoto(title, state.loop[0].replace(/(\([A-Za-z\-\/]{1,3}\))/gm,''), true))
-    //             }
-    //             break;
-    //     }
-    //     if(!stateFilter.color&&state.color.length){
-    //         handleFilterDevice('color', state.color[0])
-    //     }
-    // }, [state.color]);
-
     useEffect(() => {
         switch (picType){
             case ('color'):
@@ -217,6 +185,10 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
 
     useEffect(() => {
         filterOptions(devices, setState)
+        const firstDevice = devices[0];
+        if(firstDevice){
+            setFilterDevice([devices[0]]);
+        }
     }, []);
 
     return (
@@ -286,7 +258,12 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
 
                     <div className={style.deviceCardFooterPriceBox}>
                         <span>{stateFilter.price?`${stateFilter.price}₽`:null}</span>
-                        <button disabled={buyBtnState}>Оформить заказ</button>
+                        <button
+                            onClick={handleSaveBasket}
+                            disabled={buyBtnState}
+                        >
+                            Оформить заказ
+                        </button>
                     </div>
                 </div>
             </div>

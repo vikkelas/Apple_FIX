@@ -1,4 +1,4 @@
-import {MenuI} from "../../interface/MenuInterface";
+import {MenuI} from "@/interface/MenuInterface";
 
 const menuList:MenuI[] = [
     {

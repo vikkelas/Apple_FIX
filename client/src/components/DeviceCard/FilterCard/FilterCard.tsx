@@ -1,6 +1,6 @@
 import React from 'react';
 import {v4 as uuidv4} from 'uuid';
-import {ResponseDeviceColorI} from "../../../../interface/ResponseInterface";
+import {ResponseDeviceColorI} from "@/interface/ResponseInterface";
 import ColorPin from "@/components/Assets/ColorPin";
 import style from './FilterCard.module.sass';
 import clsx from "clsx";

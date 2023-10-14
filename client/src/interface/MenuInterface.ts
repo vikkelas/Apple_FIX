@@ -8,6 +8,7 @@ export interface MenuI {
     title: string;
     link: string | null;
     subMenu: null | SubMenuI[];
+    type?: string;
 }
 
 

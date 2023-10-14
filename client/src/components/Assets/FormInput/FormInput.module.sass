@@ -1,0 +1,31 @@
+@import '@/styles/mixin'
+.label
+    width: 100%
+    padding: 8px
+    border: 1px solid $accent
+    border-radius: 8px
+    display: flex
+    align-items: center
+    gap: 10px
+    &Icon
+        width: 24px
+        height: 24px
+        display: flex
+        justify-content: center
+        align-items: center
+        svg
+            height: 100%
+            width: auto
+    &Input
+        width: 100%
+        font-size: 14px
+        font-family: Mont, sans-serif
+        outline: none
+        border: none
+        &::placeholder
+            color: $accent
+            opacity: 0.3
+            font-size: 14px
+            font-family: Mont, sans-serif
+
+

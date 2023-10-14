@@ -1,4 +1,4 @@
-import {ResponseDeviceI} from "../../interface/ResponseInterface";
+import {ResponseDeviceI} from "@/interface/ResponseInterface";
 import {StateDevice} from "@/components/Models/ModelCard/ModelCard";
 import {minimumPrice} from "@/helpers/helpFunction";
 

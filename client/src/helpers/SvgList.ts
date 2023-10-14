@@ -22,6 +22,10 @@ const svgList = {
     iwatch: "svg-iwatch",
     airPods: "svg-airPods",
     info: "svg-info",
-    arrowLeft: "svg-arrow-left"
+    arrowLeft: "svg-arrow-left",
+    application: "svg-application",
+    man: "svg-man",
+    telephone: "svg-telephone",
+    clock: "svg-clock"
 }
 export default svgList;

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ResponseTypesI} from "../../../interface/ResponseInterface";
+import {ResponseTypesI} from "@/interface/ResponseInterface";
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {v4 as uuidv4} from 'uuid';
 import {useRouter} from "next/router";

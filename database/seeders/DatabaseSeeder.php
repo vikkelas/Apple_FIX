@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
             DeviceTypeSeeder::class,
             DeviceModelSeeder::class,
             DeviceColorSeeder::class,
-            DeviceSeeder::class
+            DeviceSeeder::class,
+            DeviceServiceSeeder::class
         ]);
     }
 }

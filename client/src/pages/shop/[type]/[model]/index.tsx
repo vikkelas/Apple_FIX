@@ -1,6 +1,6 @@
 import React from 'react';
 import {NextPage} from "next";
-import {ResponseDeviceColorI, ResponseTypeModelI} from "../../../../../interface/ResponseInterface";
+import {ResponseDeviceColorI, ResponseTypeModelI} from "@/interface/ResponseInterface";
 import Layout from "@/components/Layout/Layout";
 import DeviceCard from "@/components/DeviceCard/DeviceCard";
 

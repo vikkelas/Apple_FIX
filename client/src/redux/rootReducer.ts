@@ -1,13 +1,13 @@
 import {combineReducers} from "redux";
-import deviceSlice from "@/redux/reducers/deviceSlice";
-import {DeviceI} from "@/redux/interface/DeviceInterface";
+import {OrderI} from "@/redux/interface/OrderInterface";
+import orderSlice from "@/redux/reducers/orderSlice";
 
 export type AppState = {
-    device: DeviceI;
+    order: OrderI;
 }
 
 const rootReducer = combineReducers<AppState>({
-    device: deviceSlice,
+    order: orderSlice,
 })
 
 export type RootState = ReturnType<typeof rootReducer>
