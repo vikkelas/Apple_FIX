@@ -5,6 +5,9 @@ const nextConfig = {
         APP_URL_BACKEND: process.env.APP_URL_BACKEND,
         DEV_TOOLS_REDUX: process.env.DEV_TOOLS_REDUX
     },
+    images: {
+        dangerouslyAllowSVG: true,
+    }
 }
 
 module.exports = nextConfig

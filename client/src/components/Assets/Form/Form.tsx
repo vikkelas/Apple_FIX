@@ -51,7 +51,13 @@ const Form:React.FC<FormI> = (
         telephone: '',
         time: ''
     })
+
     const router = useRouter();
+    const clearPrice = data?.price?data.price.replace(/\D/g, ""):'';
+    const price = new Intl.NumberFormat('ru-RU', {
+        style: 'currency',
+        currency: 'RUB',
+    }).format(clearPrice).replace(/(,00)/g, '')
     const handleSetFormState = (name:string, value: string) => {
         if(name==="telephone"){
             const telMask = formattedPhoneNumber(value);
@@ -84,7 +90,7 @@ const Form:React.FC<FormI> = (
                             <span dangerouslySetInnerHTML={{ __html: data.description}}/>
                         </div>
                         <div className={style.containerMainInfoPrice}>
-                            <h4>{data.price}</h4>
+                            <h4>{price}</h4>
                             <span dangerouslySetInnerHTML={{ __html: data.additionalInformation}}/>
                         </div>
                     </div>

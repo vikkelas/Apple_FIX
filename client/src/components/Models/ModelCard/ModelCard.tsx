@@ -39,6 +39,11 @@ const ModelCard:React.FC<{model:ResponseTypeModelI, colors:ResponseDeviceColorI[
         setStateCard((prevState)=>({...prevState, [name]: value}))
     }
 
+    const price = new Intl.NumberFormat('ru-RU', {
+        style: 'currency',
+        currency: 'RUB',
+    }).format(stateCard.price).replace(/(,00)/g, '')
+
     useEffect(() => {
         filterOptions(devices, setStateCard)
     }, []);
@@ -69,7 +74,6 @@ const ModelCard:React.FC<{model:ResponseTypeModelI, colors:ResponseDeviceColorI[
         <article className={style.card}>
             <div className={style.cardHeader}>
                 <h2 className={style.cardHeaderTitle}>{title}</h2>
-                <IconSVG width={20} height={20} imageId={SvgList.info}/>
             </div>
             <div className={style.cardMain}>
                 <div className={style.cardMainImage}>
@@ -121,7 +125,7 @@ const ModelCard:React.FC<{model:ResponseTypeModelI, colors:ResponseDeviceColorI[
                         </ul>
                     </div>:null}
                     <div className={style.cardFooterPriceBox}>
-                        <span>от {stateCard.price}₽</span>
+                        <span>от {price}</span>
                         <Link className={style.cardFooterPriceBoxBtn} href={`/shop/${type}/${model.slug}`}>Выбрать</Link>
                     </div>
                 </div>

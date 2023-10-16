@@ -25,6 +25,9 @@ class DeviceModelController extends Controller
         foreach ($model as $item){
             $item->devices;
         }
+        foreach ($model as $item){
+            $item->deviceServices;
+        }
         return $model[0];
     }
 

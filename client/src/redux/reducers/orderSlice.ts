@@ -1,6 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {DeviceOrder, OrderI} from "@/redux/interface/OrderInterface";
-import {ResponseDeviceI} from "@/interface/ResponseInterface";
+import {DeviceOrderI, OrderI, ServiceOrderI} from "@/redux/interface/OrderInterface";
 
 const initialState: OrderI = {
     typeForm: null,
@@ -15,7 +14,7 @@ const orderSlice = createSlice({
     name: 'order',
     initialState,
     reducers: {
-        changeState: (state:OrderI, action:PayloadAction<{ name: string, value: string|DeviceOrder }[]>)=>{
+        changeState: (state:OrderI, action:PayloadAction<{ name: string, value: string|DeviceOrderI|ServiceOrderI }[]>)=>{
             action.payload.forEach((item)=>{
                 const {name, value} = item
                 state[name] = value;

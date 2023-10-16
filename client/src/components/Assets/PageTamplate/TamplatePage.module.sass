@@ -1,0 +1,33 @@
+@import "@/styles/mixin"
+
+.template
+    @include container
+    gap: 15px
+    &Header
+        display: flex
+        gap: 20px
+        align-items: center
+        &Title
+            display: flex
+            flex-direction: column
+            h1
+                @include title
+            span
+                @include LightText
+
+    &Description
+        @include LightText
+    &Footer
+        align-self: center
+        @include linkAccent
+        &Ico
+            width: 16px
+            height: 16px
+            position: relative
+            padding-bottom: 3px
+            transform: rotateY(180deg)
+            Svg
+                height: 100%
+                width: auto
+
+

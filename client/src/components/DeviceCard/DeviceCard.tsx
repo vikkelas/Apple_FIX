@@ -13,7 +13,8 @@ import Link from "next/link";
 import {useDispatch} from "react-redux";
 import {changeState} from "@/redux/reducers/orderSlice";
 import {TypeForm} from "@/interface/FormInterface";
-import {DeviceOrder} from "@/redux/interface/OrderInterface";
+import {DeviceOrderI} from "@/redux/interface/OrderInterface";
+import clsx from "clsx";
 
 export type StateFilter = {
     color: null | number;
@@ -55,6 +56,12 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         price: null,
         loop_type: []
     })
+
+    const priceFormated = new Intl.NumberFormat('ru-RU', {
+        style: 'currency',
+        currency: 'RUB',
+    }).format(stateFilter.price).replace(/(,00)/g, '')
+
     // filter
     const handleStateFilter = (name: string, value: string|number) => {
        setStateFilter((prevState)=>({...prevState, [name]: value}))
@@ -110,7 +117,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
             const color = colorData.find(item=>item.id===stateFilter.color);
             const loop = stateFilter.loop?`<br>${stateFilter.loop}`:null;
             const wifi = stateFilter.connection?`<br>${stateFilter.connection}`:null;
-            const infoDevice: DeviceOrder = {
+            const infoDevice: DeviceOrderI = {
                 title: `${modelDevice.title}${memory?memory:''}<br>${color?color.title:null}`,
                 desc: `${stateFilter.country?stateFilter.country:''}${loop?loop:''}${wifi?wifi:''}`,
                 price: `${filterDevice[0].price}₽`
@@ -183,6 +190,8 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         }
     }, [stateFilter.color, stateFilter.loop]);
 
+
+
     useEffect(() => {
         filterOptions(devices, setState)
         const firstDevice = devices[0];
@@ -206,6 +215,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                     <div className={style.deviceCardMainPhoto}>
                         {namePhoto?
                             <Image
+                                className={clsx([router.query.type==='apple-watch'&&style.scale])}
                                 src={`/images/${type}/${namePhoto}`}
                                 fill
                                 alt={`${namePhoto}`}
@@ -257,7 +267,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                     />:null}
 
                     <div className={style.deviceCardFooterPriceBox}>
-                        <span>{stateFilter.price?`${stateFilter.price}₽`:null}</span>
+                        <span>{priceFormated}</span>
                         <button
                             onClick={handleSaveBasket}
                             disabled={buyBtnState}

@@ -26,6 +26,10 @@ const svgList = {
     application: "svg-application",
     man: "svg-man",
     telephone: "svg-telephone",
-    clock: "svg-clock"
+    clock: "svg-clock",
+    route: "svg-route",
+    appleService: "svg-appleService",
+    horizontal: "svg-horizontal"
+
 }
 export default svgList;

@@ -56,6 +56,7 @@ const MenuItem:React.FC<
                     <motion.div
                         initial={{rotateX: 0}}
                         animate={subMenuHidden?{rotateX:180}:{rotateX: 0}}
+                        className={style.itemMenuContainerIco}
                     >
                         <IconSVG height={16} width={16} imageId={SvgList.arrow_blue}/>
                     </motion.div>

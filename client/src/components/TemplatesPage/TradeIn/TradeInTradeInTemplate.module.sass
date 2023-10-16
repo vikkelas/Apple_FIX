@@ -1,0 +1,40 @@
+@import "@/styles/mixin"
+
+.tradeIn
+    display: flex
+    flex-direction: column
+    gap: 15px
+    &Title
+        @include SubTitle
+    &List
+        margin-left: 10px
+        display: flex
+        flex-direction: column
+        gap: 15px
+        &Item
+            display: flex
+            align-items: flex-start
+            gap: 10px
+            &Count
+                min-width: 16px
+                min-height: 16px
+                display: flex
+                padding: 2px 5px 1px 5px
+                flex-direction: column
+                justify-content: center
+                align-items: center
+                border-radius: 4px
+                background-color: $accent
+                color: white
+                font-family: MontBold,sans-serif
+                font-size: 10px
+            &Info
+                display: flex
+                flex-direction: column
+                gap: 5px
+                h3
+                    font-family: Mont,sans-serif
+                    color: $black
+                    font-size: 14px
+                p
+                    @include LightText

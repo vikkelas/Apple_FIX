@@ -1,0 +1,73 @@
+@import "mixin"
+.container
+    display: flex
+    flex-direction: column
+    gap: 15px
+.tradeIn
+    @include container
+    background-image: url("/images/iPhone 12-13-image_tradeIn.png")
+    background-repeat: no-repeat
+    width: 100%
+    &Box
+        align-self: flex-end
+        max-width: 180px
+        display: flex
+        flex-direction: column
+        gap: 20px
+        &Header
+            display: flex
+            flex-direction: column
+            gap: 5px
+            h2
+                @include title
+            p
+                @include LightText
+        &Footer
+            @include linkAccent
+            &Ico
+                width: 16px
+                height: 16px
+                transform: rotateY(180deg)
+                padding: 1px 0 2px 0
+                display: flex
+                align-items: center
+                justify-content: center
+                svg
+                    width: auto
+                    height: 100%
+
+.main
+    @include container
+    gap: 20px
+    &Header
+        display: flex
+        flex-direction: column
+        gap: 5px
+        h1
+            @include title
+        p
+            @include LightText
+    &ListLink
+        display: flex
+        justify-content: space-between
+
+.route
+    @include container
+    flex-direction: row
+    gap: 20px
+    &Header
+        display: flex
+        flex-direction: column
+        gap: 20px
+        &Link
+            @include linkAccent
+        &Box
+            display: flex
+            flex-direction: column
+            gap: 5px
+            h2
+                @include SubTitle
+
+            span
+                @include LightText
+

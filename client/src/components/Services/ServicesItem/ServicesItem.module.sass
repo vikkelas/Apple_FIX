@@ -1,0 +1,32 @@
+@import '@/styles/mixin'
+
+.service
+    padding: 8px 0
+    border-top: 0.5px solid var(--accent-50, rgba(72, 145, 255, 0.50))
+    display: flex
+    align-items: center
+    justify-content: space-between
+    &:first-child
+        border: none
+    &Box
+        display: flex
+        flex-direction: column
+        gap: 3px
+        font-size: 12px
+        h1
+            font-family: Mont,sans-serif
+            color: $black
+        h2
+            font-family: MontSemiBold,sans-serif
+            color: $accent
+        p
+            @include LightText
+            font-size: 10px
+        &Time
+            min-width: max-content
+.price
+    align-items: flex-end
+    text-align: right
+
+
+

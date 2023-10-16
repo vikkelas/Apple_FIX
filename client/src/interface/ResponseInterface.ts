@@ -14,13 +14,22 @@ export interface ResponseDeviceI {
     device_color_id: number;
 }
 
+export interface ResponseServicesI {
+    id: number;
+    title: string;
+    description: string;
+    price: number;
+    time: string;
+    hits: boolean;
+}
+
 export interface ResponseTypeModelI {
     id: number;
     title: string;
     slug: string;
     device_type_id: number;
     pic_type: string;
-    device_services: []
+    device_services: ResponseServicesI[]
     devices: ResponseDeviceI[]
 }
 
@@ -38,3 +47,5 @@ export interface ResponseDeviceColorI {
     first_color: string;
     second_color: string;
 }
+
+

@@ -46,6 +46,17 @@ const Order  = () => {
                     price: device?.price?device.price:'',
                     additionalInformation: 'Гарантия<br>1 год'
                 })
+                break;
+            case (TypeForm.Service):
+                setDataOrder({
+                    title: service?.title?service.title:'',
+                    description: service?.description?service.description:'',
+                    price: service?.price?`${service.price}`:'',
+                    additionalInformation: service?.time?service.time:'',
+                    model: service?.modelName?service.modelName:''
+                })
+                break;
+            default: setDataOrder(null);
         }
     }, []);
 

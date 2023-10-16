@@ -57,5 +57,57 @@ class DeviceServiceSeeder extends Seeder
             "hits" => true,
             "device_model_id" => 1,
         ]);
+
+
+
+
+        DB::table('device_services')->insert([
+            "title" => "Чистка от пыли и грязи",
+            "description" => "Профессионально удаляем загрягнения",
+            "price" => 4500,
+            "time" => "1 день",
+            "hits" => false,
+            "device_model_id" => 1,
+        ]);
+        DB::table('device_services')->insert([
+            "title" => "Замена окошка камеры",
+            "description" => "Заменить стекло камеры можно отдельно, без замены корпуса",
+            "price" => 2500,
+            "time" => "2 час",
+            "hits" => false,
+            "device_model_id" => 1,
+        ]);
+        DB::table('device_services')->insert([
+            "title" => "Замена разъема зарядки",
+            "description" => "При повреждение контактов, разъем можно заменить",
+            "price" => 3000,
+            "time" => "1 час",
+            "hits" => false,
+            "device_model_id" => 1,
+        ]);
+        DB::table('device_services')->insert([
+            "title" => "Замена разговорного динамика",
+            "description" => "Замените динамик при плохой слышимости во время разговора",
+            "price" => 2500,
+            "time" => "1 час",
+            "hits" => false,
+            "device_model_id" => 1,
+        ]);
+        DB::table('device_services')->insert([
+            "title" => "Замена основного динамика",
+            "description" => "Замените динамик при плохом проиигрывании мелодий",
+            "price" => 3500,
+            "time" => "1 час",
+            "hits" => false,
+            "device_model_id" => 1,
+        ]);
+        DB::table('device_services')->insert([
+            "title" => "Замена разговорного микрофона",
+            "description" => "Замените микрофон при жалобах собеседника на плохую слышимость",
+            "price" => 4500,
+            "time" => "1 день",
+            "hits" => false,
+            "device_model_id" => 1,
+        ]);
     }
 }
