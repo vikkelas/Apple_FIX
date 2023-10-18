@@ -107,7 +107,7 @@ const Layout:React.FC<LayoutProps> = ({description, title, keywords='', children
                                 menuLust={listMenu}
                                 setActiveMenu={setActiveMenu}
                             />:null}
-                    </AnimatePresence>
+                        </AnimatePresence>
                     </>:null}
                 {horizontal?<Horizontal/>:null}
             </main>
