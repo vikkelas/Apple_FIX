@@ -20,7 +20,6 @@ export type StateFilter = {
     color: null | number;
     country: null | string;
     connection: null | string;
-    price: null | number;
     loop: null | string;
     memory: null | string;
 }
@@ -42,7 +41,6 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         color: null,
         country: null,
         connection: null,
-        price: null,
         loop: null,
         memory: null,
     })
@@ -57,10 +55,16 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         loop_type: []
     })
 
-    const priceFormated = new Intl.NumberFormat('ru-RU', {
-        style: 'currency',
-        currency: 'RUB',
-    }).format(stateFilter.price).replace(/(,00)/g, '')
+    const priceFormated = () => {
+        if (state.price){
+            return new Intl.NumberFormat('ru-RU', {
+                style: 'currency',
+                currency: 'RUB',
+            }).format(state.price).replace(/(,00)/g, '')
+        }else {
+            return false;
+        }
+    }
 
     // filter
     const handleStateFilter = (name: string, value: string|number) => {
@@ -78,37 +82,34 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         })
     }
     // check select
-    const optionsFilter = (name:string, value:string|number, i:ResponseDeviceI) => {
-        switch (name){
-            case ("color"):
-                if(i.device_color_id)return i.device_color_id===value;
-                break;
-            case ("loop"):
-                const nameLoop = `${i.loop_type?i.loop_type:''}${i.loop_type&&i.loop_size?' ':''}${i.loop_size?i.loop_size:''}`;
-                return nameLoop === value;
-            case ("memory"):
-                if(i.memory)return  +(i.memory.replace(/\D/g, ''))===value;
-                break;
-            default:
-                // @ts-ignore
-                return i[name]===value
+    const optionsFilter = ( i:ResponseDeviceI) => {
+        let check = true;
+        const checkArr = []
+        for (const filterItem in stateFilter) {
+            if(stateFilter[filterItem]&&filterItem!=="price"){
+                switch (filterItem){
+                    case ("color"):
+                        if(i.device_color_id)checkArr.push(i.device_color_id===stateFilter[filterItem]);
+                        break;
+                    case ("loop"):
+                        const nameLoop = `${i.loop_type?i.loop_type:''}${i.loop_type&&i.loop_size?' ':''}${i.loop_size?i.loop_size:''}`;
+                        checkArr.push(nameLoop === stateFilter[filterItem]);
+                        break
+                    case ("memory"):
+                        if(i.memory)checkArr.push(+(i.memory.replace(/\D/g, ''))===stateFilter[filterItem]);
+                        break;
+                    default:
+                        // @ts-ignore
+                        checkArr.push(i[filterItem]===stateFilter[filterItem]);
+                }
+            }
         }
-    }
-
-    const handleFilterDevice = (name:string, value: string|number) => {
-        const newFilterDevice = filterDevice.filter(i => {
-            return optionsFilter(name, value, i)
-        })
-        if(newFilterDevice.length){
-            handleStateFilter(name, value)
-            setFilterDevice(newFilterDevice)
-        }else{
-            setFilterDevice(devices.filter(i=>{
-                return optionsFilter(name, value, i)
-            }));
-            clearStateFilter();
-            handleStateFilter(name, value);
-        }
+        checkArr.forEach(i => {
+            if (!i) {
+                check = false
+            }
+        });
+        return check;
     }
 
     const handleSaveBasket = () => {
@@ -131,44 +132,19 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
     }
 
     useEffect(() => {
+        const newFilterDevice = devices.filter(i => {
+            return optionsFilter(i)
+        })
+        setFilterDevice(newFilterDevice)
+    }, [stateFilter]);
+
+    useEffect(() => {
         if(filterDevice.length===1){
             const deviceSelect = filterDevice[0]
-            for (const deviceKey in deviceSelect) {
-                // @ts-ignore
-                if(deviceSelect[deviceKey]){
-                    let name:string|null = null;
-                    let value: string|number|null = null;
-                    switch (deviceKey){
-                        case ("device_color_id"):
-                            name = 'color';
-                            value = deviceSelect[deviceKey]
-                            break;
-                        case ("loop_type"):
-                            const nameLoop = `${deviceSelect.loop_type?deviceSelect.loop_type:''}${deviceSelect.loop_type&&deviceSelect.loop_size?' ':''}${deviceSelect.loop_size?deviceSelect.loop_size:''}`;
-                            name = 'loop';
-                            value = nameLoop;
-                            break;
-                        case ("loop_size"):
-                            const nameSize = `${deviceSelect.loop_type?deviceSelect.loop_type:''}${deviceSelect.loop_type&&deviceSelect.loop_size?' ':''}${deviceSelect.loop_size?deviceSelect.loop_size:''}`;
-                            name = 'loop';
-                            value = nameSize;
-                            break;
-                        case ("memory"):
-                            name = 'memory';
-                            value = deviceSelect[deviceKey]&&`${deviceSelect[deviceKey]}`.replace(/\D/g, '');
-                            break;
-                        default:
-                            if(stateFilter.hasOwnProperty(deviceKey)){
-                                name = deviceKey;
-                                // @ts-ignore
-                                value = deviceSelect[deviceKey];
-                            }
-                    }
-                    name&&value&&handleStateFilter(name, value)
-                }
-            }
+            setState((prevState)=>({...prevState, price: deviceSelect.price}));
             setBuyBtnState(false)
         }else{
+            setState((prevState)=>({...prevState, price: null}));
             setBuyBtnState(true)
         }
     }, [filterDevice]);
@@ -190,13 +166,23 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         }
     }, [stateFilter.color, stateFilter.loop]);
 
-
-
     useEffect(() => {
         filterOptions(devices, setState)
         const firstDevice = devices[0];
         if(firstDevice){
             setFilterDevice([devices[0]]);
+            switch (picType){
+                case ('color'):
+                    handleStateFilter('color', firstDevice.device_color_id)
+                    break;
+                case ('loop_type'):
+                    handleStateFilter('color', firstDevice.device_color_id)
+                    handleStateFilter('loop',
+                        `${firstDevice.loop_type?firstDevice.loop_type:''}${firstDevice.loop_type&&firstDevice.loop_size?' ':''}${firstDevice.loop_size?firstDevice.loop_size:''}`
+                    )
+                    break;
+            }
+
         }
     }, []);
 
@@ -226,7 +212,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                         stateFilter={stateFilter}
                         title={'Цвет:'}
                         listFilter={state.color}
-                        handleStateFilter={handleFilterDevice}
+                        handleStateFilter={handleStateFilter}
                         idItem={'device_color_id'}
                         stateName={'color'}
                         colorData={colorData}
@@ -237,7 +223,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                         stateFilter={stateFilter}
                         title={'Память:'}
                         listFilter={state.memory}
-                        handleStateFilter={handleFilterDevice}
+                        handleStateFilter={handleStateFilter}
                         idItem={'memory'}
                         stateName={'memory'}
                     />:null}
@@ -245,7 +231,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                         stateFilter={stateFilter}
                         title={'Страна:'}
                         listFilter={state.country}
-                        handleStateFilter={handleFilterDevice}
+                        handleStateFilter={handleStateFilter}
                         idItem={'country'}
                         stateName={'country'}
                     />:null}
@@ -253,7 +239,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                         stateFilter={stateFilter}
                         title={'Связь:'}
                         listFilter={state.connection}
-                        handleStateFilter={handleFilterDevice}
+                        handleStateFilter={handleStateFilter}
                         idItem={'connection'}
                         stateName={'connection'}
                     />:null}
@@ -261,13 +247,13 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                         stateFilter={stateFilter}
                         title={'Ремешок:'}
                         listFilter={state.loop}
-                        handleStateFilter={handleFilterDevice}
+                        handleStateFilter={handleStateFilter}
                         idItem={'loop'}
                         stateName={'loop'}
                     />:null}
 
                     <div className={style.deviceCardFooterPriceBox}>
-                        <span>{priceFormated}</span>
+                       <span>{priceFormated()?priceFormated():''}</span>
                         <button
                             onClick={handleSaveBasket}
                             disabled={buyBtnState}

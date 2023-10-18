@@ -25,7 +25,6 @@ const FilterCard:React.FC<PropsFilter> = (
         handleStateFilter,
         stateName,
         stateFilter
-
     }) => {
     return (
         <ul className={style.filterList}>

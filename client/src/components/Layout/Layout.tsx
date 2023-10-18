@@ -8,6 +8,9 @@ import {ResponseTypesI} from "@/interface/ResponseInterface";
 import parseMenuList from "@/helpers/parseMenuList";
 import {AnimatePresence} from "framer-motion";
 import Horizontal from "@/components/TemplatesPage/Horizontal/Horizontal";
+import {useDispatch, useSelector} from "react-redux";
+import {AppState} from "@/redux/rootReducer";
+import {changeState} from "@/redux/reducers/menuSlice";
 
 type LayoutProps = {
     description: string;
@@ -18,7 +21,8 @@ type LayoutProps = {
 
 const Layout:React.FC<LayoutProps> = ({description, title, keywords='', children}) => {
     const targetRef = useRef<HTMLElement | null>(null);
-    const [typesModels, setTypesModals] = useState<null|ResponseTypesI[]>(null)
+    const {typesMenu} = useSelector((state:AppState)=>state.menu)
+    // const [typesModels, setTypesModals] = useState<null|ResponseTypesI[]>(null)
     const [activeMenu, setActiveMenu] = useState<string |null>(null)
     const [listMenu, setListMenu] = useState<null | MenuI[]>(null)
     const [horizontal, setHorizontal] = useState(false)
@@ -34,14 +38,14 @@ const Layout:React.FC<LayoutProps> = ({description, title, keywords='', children
         }
         switch (menu_item){
             case ('store'):
-                if(typesModels){
-                    setListMenu(parseMenuList(typesModels, menu_item));
+                if(typesMenu){
+                    setListMenu(parseMenuList(typesMenu, menu_item));
                     setActiveMenu(menu_item)
                 }
                 break;
             case ('service'):
-                if(typesModels){
-                    setListMenu(parseMenuList(typesModels, menu_item));
+                if(typesMenu){
+                    setListMenu(parseMenuList(typesMenu, menu_item));
                     setActiveMenu(menu_item)
                 }
 
@@ -52,11 +56,12 @@ const Layout:React.FC<LayoutProps> = ({description, title, keywords='', children
                 break;
         }
     }
+    const dispatch = useDispatch();
 
     const getServiceList = async () => {
         fetch(`${process.env.APP_URL_BACKEND}/api/types`)
             .then(r=>r.json())
-            .then(res=>setTypesModals(res));
+            .then(res=>dispatch(changeState({name: "typesMenu", value: res})));
     }
 
     const resizeHandler = () => {
@@ -76,13 +81,15 @@ const Layout:React.FC<LayoutProps> = ({description, title, keywords='', children
         const {width, height} = size;
         if(width>height){
             setHorizontal(true)
-            return
+        }else{
+            setHorizontal(false)
         }
-        setHorizontal(false)
     }, [size]);
 
     useEffect(() => {
-        getServiceList().then()
+        if(!typesMenu){
+            getServiceList().then()
+        }
     }, []);
     return (
         <>
