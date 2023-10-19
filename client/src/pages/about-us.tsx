@@ -3,14 +3,14 @@ import Layout from "@/components/Layout/Layout";
 import PageTamplate from "@/components/Assets/PageTamplate/PageTamplate";
 import ListTemplate from "@/components/TemplatesPage/ListTemplate/ListTemplate";
 
-const TradeIn = () => {
+const AboutUsPage = () => {
     return (
         <Layout description={''} title={''} keywords={''}>
             <PageTamplate>
-                <ListTemplate keyList={"trade-in"}/>
+                <ListTemplate keyList={"about-us"}/>
             </PageTamplate>
         </Layout>
     );
 };
 
-export default TradeIn;
+export default AboutUsPage;

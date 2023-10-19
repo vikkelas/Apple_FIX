@@ -1,0 +1,20 @@
+@import '@/styles/mixin'
+
+.container
+    display: flex
+    flex-direction: column
+    gap: 15px
+    h2
+        @include SubTitle
+    &List
+        display: flex
+        flex-direction: column
+        gap: 15px
+        li
+            @include LightText
+            font-size: 12px
+            strong
+                @include SubTitle
+                font-size: 12px
+
+

@@ -23,12 +23,18 @@ const ServiceHeader:React.FC<{
             }}
             ref={ref}
             className={style.header}>
-            <motion.div
-                animate={!fullList?{opacity: 1, y: 0}:{opacity:0, y: -100}}
+            <AnimatePresence>
+                {!fullList&&
+                    <motion.div
+                        initial={{x:-100, opacity: 0}}
+                        animate={{opacity: 1, x: 0}}
+                        exit={{x:-100, opacity: 0}}
+                    >
+                        <IconSVG height={48} width={48} imageId={SvgList.appleService}/>
+                    </motion.div>}
+            </AnimatePresence>
 
-            >
-                <IconSVG height={48} width={48} imageId={SvgList.appleService}/>
-            </motion.div>
+
             <div
                 className={style.headerTitle}>
                 <AnimatePresence  initial={false}>
@@ -48,7 +54,7 @@ const ServiceHeader:React.FC<{
                                     initial={{x:-100, opacity: 0}}
                                     animate={{x:0, opacity: 1}}
                                     exit={{x:-100, opacity: 0}}
-                                >ремонт&nbsp;
+                                >Ремонт&nbsp;
                                 </motion.span>
                             }
                         <span

@@ -1,5 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {DeviceOrderI, OrderI, ServiceOrderI} from "@/redux/interface/OrderInterface";
+import {TypeForm} from "@/interface/FormInterface";
 
 const initialState: OrderI = {
     typeForm: null,

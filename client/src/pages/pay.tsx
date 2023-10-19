@@ -1,16 +1,16 @@
 import React from 'react';
 import Layout from "@/components/Layout/Layout";
 import PageTamplate from "@/components/Assets/PageTamplate/PageTamplate";
-import ListTemplate from "@/components/TemplatesPage/ListTemplate/ListTemplate";
+import TextList from "@/components/TemplatesPage/TextList/TextList";
 
-const TradeIn = () => {
+const Pay = () => {
     return (
         <Layout description={''} title={''} keywords={''}>
             <PageTamplate>
-                <ListTemplate keyList={"trade-in"}/>
+                <TextList kelList={"pay"}/>
             </PageTamplate>
         </Layout>
     );
 };
 
-export default TradeIn;
+export default Pay;

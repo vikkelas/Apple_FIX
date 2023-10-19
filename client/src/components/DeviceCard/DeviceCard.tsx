@@ -39,20 +39,20 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
     const picType = modelDevice.pic_type;
     const [stateFilter, setStateFilter] = useState<StateFilter>({
         color: null,
-        country: null,
         connection: null,
         loop: null,
         memory: null,
+        country: null,
     })
 
     const [state, setState] = useState<StateDevice>({
         memory: [],
         connection: [],
         color: [],
-        country: [],
         loop: [],
         price: null,
-        loop_type: []
+        loop_type: [],
+        country: [],
     })
 
     const priceFormated = () => {
@@ -63,6 +63,27 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
             }).format(state.price).replace(/(,00)/g, '')
         }else {
             return false;
+        }
+    }
+
+    const firstStateFilter = (device:ResponseDeviceI)=>{
+        for (const stateFilterKey in stateFilter) {
+            switch (stateFilterKey){
+                case ("connection"):
+                    if(device.wifi)handleStateFilter('connection', device.wifi);
+                    break;
+                case ("loop"):
+                    if(device.loop_type||device.loop_size)handleStateFilter('loop', `${device.loop_type?device.loop_type:''}${device.loop_type&&device.loop_size?' ':''}${device.loop_size?device.loop_size:''}`)
+                    break;
+                case("memory"):
+                    if(device.memory) handleStateFilter('memory', +(device.memory.replace(/\D/g, '')));
+                    break;
+                case("color"):
+                    if(device.device_color_id) handleStateFilter('color', device.device_color_id);
+                    break;
+                default:
+                    if(device[stateFilterKey])handleStateFilter(stateFilterKey, device[stateFilterKey].toString());
+            }
         }
     }
 
@@ -113,28 +134,27 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
     }
 
     const handleSaveBasket = () => {
-        if(filterDevice.length===1){
-            const memory = stateFilter.memory?stateFilter.memory<100?` ${stateFilter.memory}Тб`:` ${stateFilter.memory}Гб`:null;
-            const color = colorData.find(item=>item.id===stateFilter.color);
-            const loop = stateFilter.loop?`<br>${stateFilter.loop}`:null;
-            const wifi = stateFilter.connection?`<br>${stateFilter.connection}`:null;
-            const infoDevice: DeviceOrderI = {
-                title: `${modelDevice.title}${memory?memory:''}<br>${color?color.title:null}`,
-                desc: `${stateFilter.country?stateFilter.country:''}${loop?loop:''}${wifi?wifi:''}`,
-                price: `${filterDevice[0].price}₽`
-            }
-            dispatch(changeState([
-                {name:"device", value: infoDevice},
-                {name: "typeForm", value: TypeForm.Order},
-            ]))
-            router.push('/order').then()
+        const memory = stateFilter.memory?stateFilter.memory<100?` ${stateFilter.memory}Тб`:` ${stateFilter.memory}Гб`:null;
+        const color = colorData.find(item=>item.id===stateFilter.color);
+        const loop = stateFilter.loop?`<br>${stateFilter.loop}`:null;
+        const wifi = stateFilter.connection?`<br>${stateFilter.connection}`:null;
+        const infoDevice: DeviceOrderI = {
+            title: `${modelDevice.title}${memory?memory:''}<br>${color?color.title:null}`,
+            desc: `${stateFilter.country?stateFilter.country:''}${loop?loop:''}${wifi?wifi:''}`,
+            price: `${filterDevice[0]?filterDevice[0].price:''}₽`
         }
+        dispatch(changeState([
+            {name:"device", value: infoDevice},
+            {name: "typeForm", value: TypeForm.Order},
+        ]))
+        router.push('/order').then()
     }
 
     useEffect(() => {
         const newFilterDevice = devices.filter(i => {
             return optionsFilter(i)
         })
+        console.log(stateFilter)
         setFilterDevice(newFilterDevice)
     }, [stateFilter]);
 
@@ -170,19 +190,8 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         filterOptions(devices, setState)
         const firstDevice = devices[0];
         if(firstDevice){
-            setFilterDevice([devices[0]]);
-            switch (picType){
-                case ('color'):
-                    handleStateFilter('color', firstDevice.device_color_id)
-                    break;
-                case ('loop_type'):
-                    handleStateFilter('color', firstDevice.device_color_id)
-                    handleStateFilter('loop',
-                        `${firstDevice.loop_type?firstDevice.loop_type:''}${firstDevice.loop_type&&firstDevice.loop_size?' ':''}${firstDevice.loop_size?firstDevice.loop_size:''}`
-                    )
-                    break;
-            }
-
+            setFilterDevice([firstDevice]);
+            firstStateFilter(firstDevice);
         }
     }, []);
 
@@ -227,14 +236,6 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                         idItem={'memory'}
                         stateName={'memory'}
                     />:null}
-                    {state.country.length?<FilterCard
-                        stateFilter={stateFilter}
-                        title={'Страна:'}
-                        listFilter={state.country}
-                        handleStateFilter={handleStateFilter}
-                        idItem={'country'}
-                        stateName={'country'}
-                    />:null}
                     {state.connection.length?<FilterCard
                         stateFilter={stateFilter}
                         title={'Связь:'}
@@ -251,14 +252,20 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                         idItem={'loop'}
                         stateName={'loop'}
                     />:null}
-
+                    {state.country.length?<FilterCard
+                        stateFilter={stateFilter}
+                        title={'Страна:'}
+                        listFilter={state.country}
+                        handleStateFilter={handleStateFilter}
+                        idItem={'country'}
+                        stateName={'country'}
+                    />:null}
                     <div className={style.deviceCardFooterPriceBox}>
                        <span>{priceFormated()?priceFormated():''}</span>
                         <button
                             onClick={handleSaveBasket}
-                            disabled={buyBtnState}
                         >
-                            Оформить заказ
+                            {buyBtnState?'Уточнить о наличие':'Оформить заказ'}
                         </button>
                     </div>
                 </div>

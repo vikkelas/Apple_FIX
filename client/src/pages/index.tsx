@@ -2,38 +2,11 @@ import Layout from "@/components/Layout/Layout";
 import style from '@/styles/Home.module.sass';
 import IconSVG from "@/components/Assets/IconSVG";
 import SvgList from "@/helpers/SvgList";
-import {useRouter} from "next/router";
 import Link from "next/link";
-import React, {useEffect, useState} from "react";
+import React from "react";
 import clsx from "clsx";
 
 const Home = () => {
-    const router = useRouter();
-    const [location, setLocation] = useState({
-        latitude: '',
-        longitude: ''
-    })
-    useEffect(()=> {
-        if (navigator.geolocation) {
-            navigator.permissions
-                .query({name: "geolocation"})
-                .then((result)=>{
-                    if (result.state === "granted") {
-                        navigator.geolocation.getCurrentPosition((position)=>{
-                            setLocation({
-                                latitude:  position.coords.latitude.toString(),
-                                longitude: position.coords.longitude.toString()
-                            })
-                        })
-                    }else if (result.state === "prompt") {
-                        console.log(result.state);
-                    } else if (result.state === "denied") {
-                        //If denied then you have to show instructions to enable location
-                    }
-                })
-        }
-
-    }, [])
     return (
         <Layout description={''} title={''} keywords={''}>
                <div className={ clsx(['container', style.container])}>
@@ -162,10 +135,10 @@ const Home = () => {
                            <Link
                                target="_blank"
                                rel="noopener noreferrer"
-                               href={`https://yandex.ru/maps/?rtext=${location.latitude!==''&&location.longitude!==''?`${location.latitude},${location.longitude}`:''}~56.297453, 38.129037`}
+                               href={`https://yandex.ru/maps/org/apple_fix/1279673815/`}
                                className={style.routeHeaderLink}
                            >
-                               <span>Построить маршрут</span>
+                               <span>Показать на карте</span>
                                <div className={style.tradeInBoxFooterIco}>
                                    <IconSVG height={16} width={16} imageId={SvgList.arrowLeft}/>
                                </div>

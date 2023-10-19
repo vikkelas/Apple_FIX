@@ -1,16 +1,16 @@
 import React from 'react';
 import Layout from "@/components/Layout/Layout";
 import PageTamplate from "@/components/Assets/PageTamplate/PageTamplate";
-import ListTemplate from "@/components/TemplatesPage/ListTemplate/ListTemplate";
+import CashbackTemplate from "@/components/TemplatesPage/CashbackTemplate/CashbackTemplate";
 
-const TradeIn = () => {
+const Cashback = () => {
     return (
         <Layout description={''} title={''} keywords={''}>
             <PageTamplate>
-                <ListTemplate keyList={"trade-in"}/>
+                <CashbackTemplate/>
             </PageTamplate>
         </Layout>
     );
 };
 
-export default TradeIn;
+export default Cashback;

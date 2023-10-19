@@ -16,13 +16,13 @@ const menuList:MenuI[] = [
     {
         title: "Наши ценности",
         icon: "man_hello",
-        link: "/",
+        link: "/about-us",
         subMenu: null
     },
     {
         title: "Гарантия",
         icon: "guard",
-        link: "/",
+        link: "/guarantee",
         subMenu: null
     },
     {
@@ -38,9 +38,9 @@ const menuList:MenuI[] = [
         subMenu: null
     },
     {
-        title: "Акции",
+        title: "Кэшбэк",
         icon: "fire",
-        link: "/stock",
+        link: "/cashback",
         subMenu: null
     },
     {

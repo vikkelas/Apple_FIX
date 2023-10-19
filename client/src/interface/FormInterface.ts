@@ -2,6 +2,7 @@ export enum TypeForm {
     Order="OrderForm",
     Service="ServiceForm",
     TradeIn="TradeInForm",
+
 }
 
 export interface ServiceInfo {
