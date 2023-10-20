@@ -89,14 +89,16 @@ const Form:React.FC<FormI> = (
             await fetch(`https://api.telegram.org/bot${process.env.BOT_API_TOKEN}/sendMessage?chat_id=${process.env.REQUEST_MESSAGE_CHAT_ID}&parse_mode=markdown&text=${msgJSON}`)
                 .then(resp => resp.json())
                 .then(r => {
-                    if(r.ok){
-                        handleSetForm('load', false)
-                        handleSetForm('msg', 'Ваша заявка принята!\n Свяжемся с Вами в ближайшее время!')
+                    if(!r.ok){
+                        throw new Error('Упс :( что то пошл не так!')
                     }
+                    handleSetForm('load', false)
+                    handleSetForm('msg', 'Ваша заявка принята!\n Свяжемся с Вами в ближайшее время!')
+
                 })
         }catch (err){
             handleSetForm('load', false)
-            handleSetForm('msg', 'Упс :( что то пошл не так!')
+            handleSetForm('msg', err.msg)
         }
 
     }
