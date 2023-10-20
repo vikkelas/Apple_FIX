@@ -4,7 +4,6 @@ import NavigateMenu from "@/components/Menu/NavigateMenu/NavigateMenu";
 import MenuList from "@/components/Menu/MenuList/MenuList";
 import menuList from "@/data/MenuList";
 import {MenuI} from "@/interface/MenuInterface";
-import {ResponseTypesI} from "@/interface/ResponseInterface";
 import parseMenuList from "@/helpers/parseMenuList";
 import {AnimatePresence} from "framer-motion";
 import Horizontal from "@/components/TemplatesPage/Horizontal/Horizontal";
@@ -30,7 +29,7 @@ const Layout:React.FC<LayoutProps> = ({description, title, keywords='', children
         height: 0,
         width: 0
     })
-    const setMenu = (e) => {
+    const setMenu = (e:any) => {
         const menu_item = e.currentTarget.id
         if(menu_item===activeMenu){
             setActiveMenu(null);
@@ -66,7 +65,7 @@ const Layout:React.FC<LayoutProps> = ({description, title, keywords='', children
 
     const resizeHandler = () => {
         const { clientHeight, clientWidth } = targetRef.current || {};
-        setSize({ height: clientHeight, width: clientWidth });
+        setSize({ height: clientHeight??0, width: clientWidth??0 });
     };
 
     useEffect(() => {

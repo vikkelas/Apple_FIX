@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {ResponseTypesI} from "@/interface/ResponseInterface";
+
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {v4 as uuidv4} from 'uuid';
 import {useRouter} from "next/router";
@@ -7,6 +8,7 @@ import SwiperTypeItem from "@/components/SwiperTypes/SwiperTypeItem/SwiperTypeIt
 import style from './SwiperTypes.module.sass';
 
 const SwiperTypes = () => {
+    const swiperRef = useRef<any>(null)
     const router = useRouter();
     const [typesList, setTypesList] = useState<null|ResponseTypesI[]>(null);
     const [aciveIndex, setActiveIndex] = useState<null|number>(null);
@@ -30,17 +32,25 @@ const SwiperTypes = () => {
     }, [router, typesList]);
 
     useEffect(() => {
+        if(swiperRef.current){
+            swiperRef.current.swiper.slideTo(aciveIndex)
+        }
+    }, [aciveIndex]);
+
+    useEffect(() => {
         getTypes().then()
     }, []);
 
     return (
         <section className={style.container}>
-            {typesList&&aciveIndex!==null?<Swiper
-                spaceBetween={10}
-                slidesPerView={"auto"}
-                className={style.containerSwiper}
-                initialSlide={aciveIndex}
-            >
+            {typesList&&aciveIndex!==null?
+                <Swiper
+                    ref={swiperRef}
+                    spaceBetween={10}
+                    slidesPerView={"auto"}
+                    className={style.containerSwiper}
+                    initialSlide={aciveIndex}
+                >
                 {typesList.map((item)=>{
                     return (
                         <SwiperSlide

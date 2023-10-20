@@ -1,10 +1,8 @@
 import React from 'react';
 import style from './NavigateMenu.module.sass';
-import IconSVG from "../../Assets/IconSVG.tsx";
-import SvgList from "@/helpers/SvgList.ts";
 import clsx from "clsx";
 
-const NavigateMenu:React.FC<{setMenu:(e)=> void, activeMenu: string|null }> = ({setMenu, activeMenu}) => {
+const NavigateMenu:React.FC<{setMenu:(e:any)=> void, activeMenu: string|null }> = ({setMenu, activeMenu}) => {
     return (
         <nav className={style.menu}>
             <ul className={style.menuList}>
