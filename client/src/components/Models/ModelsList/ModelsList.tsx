@@ -15,7 +15,7 @@ const ModelsList:React.FC<{ models:ResponseTypeModelI[],colors:ResponseDeviceCol
                 spaceBetween={15}
                 slidesPerView={1.15}
                 className={style.listCardSwiper}>
-                {modelsFilter.map(i=>{
+                {modelsFilter.reverse().map(i=>{
                     return (
                         <SwiperSlide
                             className={style.listCardSwiperSwiperSlide}
