@@ -94,6 +94,7 @@ const Layout:React.FC<LayoutProps> = ({description, title, keywords='', children
         <>
             <Head>
                 <title>{title}</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
                 <meta name="description" content={description}/>
                 <meta name="keywords" content={keywords}/>
             </Head>
