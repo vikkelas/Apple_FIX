@@ -51,6 +51,13 @@ const TemplatePageData:TemplateDataI = {
         description: "Нам доверяют более <strong>10 000</strong> клиентов!\n" +
             "Мы работаем уже <strong>10</strong> лет!",
         icon: "like_hand",
+    },
+    "contacts":{
+        title: "Контакты",
+        subtitle: "Apple Fix",
+        description: "Нам доверяют более <strong>10 000</strong> клиентов!\n" +
+            "Мы работаем уже <strong>10</strong> лет!",
+        icon: "addres_book",
     }
 }
 

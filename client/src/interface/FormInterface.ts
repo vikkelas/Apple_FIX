@@ -19,6 +19,7 @@ export interface FormI {
     desc: string|null;
     type: string;
     data: ServiceInfo | null;
+    handleSetForm: (name:string, value:string|boolean)=>void
 }
 
 export interface FormInputI {

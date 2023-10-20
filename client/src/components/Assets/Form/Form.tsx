@@ -13,6 +13,12 @@ export type stateFormProps = {
     time: string;
 }
 
+const Messages = {
+    OrderForm: "Новый заказ на технику",
+    ServiceForm: "Заказ на ремонт",
+    TradeInForm: "Закаказ на TradeIn"
+}
+
 const formItem: FormInputI[] = [
     {
         icon: "man",
@@ -44,6 +50,7 @@ const Form:React.FC<FormI> = (
         desc,
         type,
         data,
+        handleSetForm
     }
 ) => {
     const [stateForm, setStateForm] = useState<stateFormProps>({
@@ -63,8 +70,8 @@ const Form:React.FC<FormI> = (
         }else {
             return ''
         }
-
     }
+
     const handleSetFormState = (name:string, value: string) => {
         if(name==="telephone"){
             const telMask = formattedPhoneNumber(value);
@@ -72,6 +79,45 @@ const Form:React.FC<FormI> = (
             return
         }
         setStateForm((prevState)=>({...prevState, [name]:value}));
+    }
+
+    const sendBot = async (msg) => {
+        handleSetForm('status', true)
+        handleSetForm('load', true)
+        const msgJSON = JSON.stringify(msg);
+        try {
+            await fetch(`https://api.telegram.org/bot${process.env.BOT_API_TOKEN}/sendMessage?chat_id=${process.env.REQUEST_MESSAGE_CHAT_ID}&parse_mode=markdown&text=${msgJSON}`)
+                .then(resp => resp.json())
+                .then(r => {
+                    if(r.ok){
+                        handleSetForm('load', false)
+                        handleSetForm('msg', 'Ваша заявка принята!\n Свяжемся с Вами в ближайшее время!')
+                    }
+                })
+        }catch (err){
+            handleSetForm('load', false)
+            handleSetForm('msg', 'Упс :( что то пошл не так!')
+        }
+
+    }
+
+    const handleSendMessage = (e) => {
+        e.preventDefault()
+        let message = ''
+        switch (type){
+            case (TypeForm.Order):
+                message = `*${Messages[type]}:* %0A`+`*Утройство:* ${data?.title} ${data?.description}%0A`+
+                `*Имя:* ${stateForm.name}%0A*Телефон:* ${stateForm.telephone}%0A`+
+                    `*Время для звонка:* ${stateForm.time}`
+                break;
+            case (TypeForm.Service):
+                message = `*${Messages[type]}:* %0A`+`*Услуга:* ${data?.title}(${data?.model})%0A *Имя:* ${stateForm.name}%0A*Телефон:* ${stateForm.telephone}%0A*Время для звонка:* ${stateForm.time}`
+                break;
+            case (TypeForm.TradeIn):
+                message = `*${Messages[type]}:* %0A*Имя:* ${stateForm.name}%0A*Телефон:* ${stateForm.telephone}%0A*Время для звонка:* ${stateForm.time}`
+                break;
+        }
+        sendBot(message).then()
     }
 
     return (
@@ -110,7 +156,7 @@ const Form:React.FC<FormI> = (
             <div className={style.containerFooter}>
                 <div className={style.containerFooterForm}>
                     <h2>Контактные данные:</h2>
-                    <form>
+                    <form onSubmit={handleSendMessage}>
                         {formItem.map((item, index )=> {
                             return (
                                 <FormInput

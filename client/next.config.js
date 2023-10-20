@@ -3,7 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
     env: {
         APP_URL_BACKEND: process.env.APP_URL_BACKEND,
-        DEV_TOOLS_REDUX: process.env.DEV_TOOLS_REDUX
+        DEV_TOOLS_REDUX: process.env.DEV_TOOLS_REDUX,
+        BOT_API_TOKEN: process.env.BOT_API_TOKEN,
+        REQUEST_MESSAGE_CHAT_ID: process.env.REQUEST_MESSAGE_CHAT_ID
     },
     images: {
         dangerouslyAllowSVG: true,

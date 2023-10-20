@@ -32,7 +32,6 @@ const formattedPhoneNumber:(value:string)=>string = (value)=> {
         if(phoneNumber[0]==='9')phoneNumber='7'+phoneNumber
         let firstSymbols = (phoneNumber[0]==='8')?'8':'+7'
         formatted = firstSymbols+" ";
-        console.log(formatted)
         if(phoneNumber.length>1){
             formatted+='('+phoneNumber.substring(1,4);
         }
