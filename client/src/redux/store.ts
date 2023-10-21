@@ -19,7 +19,7 @@ const persistConfig = {
     whitelist: ['menu'],
     transform: [
         expireReducer('menu', {
-            expireSeconds: 5 * 24 * 60 * 60,
+            expireSeconds: 5,
         })
     ]
 }
