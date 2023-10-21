@@ -18,8 +18,8 @@ const SwiperTypeItem:React.FC<{type:ResponseTypesI}> = ({type}) => {
         <Link
             href={`/shop/${type.slug}`}
             className={clsx([style.item, typeSlug===type.slug&&'active_menu'])}>
-            <div>
-                {iconMenu?
+            <div className={style.itemIco}>
+                {iconMenu()?
                     <IconSVG height={24} width={24} imageId={SvgList[type.icon_name]}/>:
                     <Image
                         alt={type.icon_name}
