@@ -12,7 +12,7 @@ const TextList:React.FC<{ kelList: string }> = ({kelList}) => {
             <ul className={style.containerList}>
                 {list.map(item=>{
                     return (
-                        <li key={uuidv4()}><strong>{item.title}</strong> — {item.text}</li>
+                        <li key={uuidv4()}><strong>{item.title}</strong> - {item.text}</li>
                     )
                 })}
             </ul>

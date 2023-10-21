@@ -7,6 +7,7 @@ import {v4 as uuidv4} from 'uuid';
 import style from './MenuItem.module.sass';
 import {useRouter} from "next/router";
 import {AnimatePresence, motion} from "framer-motion";
+import Image from "next/image";
 
 const MenuItem:React.FC<
     {
@@ -39,6 +40,10 @@ const MenuItem:React.FC<
         }
         setActiveMenu(null);
     }
+    const iconMenu = () => {
+        return Object.keys(SvgList).findIndex(i=>i===icon)!== -1;
+    }
+
     return (
         <motion.li
             variants={variantLists}
@@ -49,7 +54,14 @@ const MenuItem:React.FC<
             className={style.itemMenu}>
             <div className={style.itemMenuContainer}>
                 <div className={style.itemMenuContainerMain}>
-                    <IconSVG height={24} width={24} imageId={SvgList[icon]}/>
+                    {iconMenu()?<IconSVG height={24} width={24} imageId={SvgList[icon]}/>:
+                        <Image
+                            alt={icon}
+                            src={`/icons/svg/${icon}.svg`}
+                            height={24}
+                            width={24}
+                        />
+                    }
                     <span>{title}</span>
                 </div>
                 {link?null:
@@ -58,6 +70,7 @@ const MenuItem:React.FC<
                         animate={subMenuHidden?{rotateX:180}:{rotateX: 0}}
                         className={style.itemMenuContainerIco}
                     >
+
                         <IconSVG height={16} width={16} imageId={SvgList.arrow_blue}/>
                     </motion.div>
                 }

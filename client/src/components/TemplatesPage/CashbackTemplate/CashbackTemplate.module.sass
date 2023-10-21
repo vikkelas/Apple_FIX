@@ -3,16 +3,14 @@
 .container
     display: flex
     flex-direction: column
-    gap: 15px
+    gap: 10px
     h1
         @include SubTitle
 
     p
         @include LightText
-        font-size: 12px
-        strong
-            @include SubTitle
-            font-size: 12px
+        a
+            @include LightText
             color: $accent
     &List
         display: flex

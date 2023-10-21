@@ -29,6 +29,8 @@ yarn-error.log*
 
 # vercel
 .vercel
+#icon svg
+./public/icons/svg
 
 # typescript
 *.tsbuildinfo

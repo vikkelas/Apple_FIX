@@ -28,7 +28,10 @@ export interface TemplateListItemDataI {
 }
 
 export interface TemplateListDataI {
-    [key:string]: TemplateListItemDataI[]
+    [key:string]: {
+        title:string;
+        list: TemplateListItemDataI[]
+    }
 }
 
 export interface TemplateTextListItemI{

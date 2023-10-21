@@ -12,21 +12,19 @@
         display: flex
         flex-direction: column
         gap: 3px
-        font-size: 12px
-        h1
-            font-family: Mont,sans-serif
-            color: $black
+        @include LightText
         h2
-            font-family: MontSemiBold,sans-serif
             color: $accent
+        &Price
+            font-family: MontSemiBold,sans-serif
         p
-            @include LightText
-            font-size: 10px
+            font-size: 12px
         &Time
             min-width: max-content
 .price
     align-items: flex-end
     text-align: right
+
 
 
 

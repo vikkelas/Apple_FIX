@@ -29,11 +29,11 @@ const Index:NextPage<{typeData:ResponseTypesI, colorData:ResponseDeviceColorI[] 
     return (
         <Layout title={''} description={''} keywords={''}>
             <>
-                <section className={'container'}>
-                    <h1 className={'titleHevy'}>Новая оригинальная<br/>
-                        <span>техника Apple в Сергиевом Посаде</span>
-                    </h1>
-                </section>
+                {/*<section className={'container'} style={{paddingBottom: "0"}}>*/}
+                {/*    <h1 className={'titleHevy'}>Новая оригинальная<br/>*/}
+                {/*        <span>техника Apple в Сергиевом Посаде</span>*/}
+                {/*    </h1>*/}
+                {/*</section>*/}
                 <SwiperTypes/>
                 {typeData.device_models?
                     <ModelsList

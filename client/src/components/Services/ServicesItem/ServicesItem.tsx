@@ -41,7 +41,7 @@ const ServicesItem:React.FC<{item:ResponseServicesI, modelName: string}> = ({ite
                 <p>{description}</p>
             </div>
             <div className={clsx([style.serviceBox, style.price])}>
-                <h2>{priceFormated}</h2>
+                <h2 className={style.serviceBoxPrice}>{priceFormated}</h2>
                 <p className={style.serviceBoxTime}>{time}</p>
             </div>
         </li>

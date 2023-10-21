@@ -24,6 +24,14 @@ export type StateFilter = {
     memory: null | string;
 }
 
+export interface FilterInterDeviceI {
+    title: string;
+    slug: string;
+    id: string;
+}
+
+
+
 const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDeviceColorI[]}> = (
     {
         modelDevice,
@@ -35,6 +43,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
     const {devices, title, } = modelDevice;
     const [buyBtnState, setBuyBtnState] = useState(true);
     const [filterDevice, setFilterDevice] = useState<ResponseDeviceI[]>(devices)
+    const [colorFilterDevice, setColorFilterDevice] = useState<null|ResponseDeviceI[]>(null)
     const [namePhoto, setNamePhoto] = useState<string|null>(null)
     const picType = modelDevice.pic_type;
     const [stateFilter, setStateFilter] = useState<StateFilter>({
@@ -55,6 +64,33 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         country: [],
     })
 
+    const filterList:FilterInterDeviceI[] = [
+        {
+            title: "Цвет",
+            slug: "color",
+            id: "device_color_id"
+        },
+        {
+            title: "Память",
+            slug: "memory",
+            id: "memory"
+        },
+        {
+            title: "Связь",
+            slug: "connection",
+            id: "connection"
+        },
+        {
+            title: "Ремешок",
+            slug: "loop",
+            id: "loop"
+        },
+        {
+            title: "Страна",
+            slug: "country",
+            id: "country"
+        }
+    ]
     const priceFormated = () => {
         if (state.price){
             return new Intl.NumberFormat('ru-RU', {
@@ -154,7 +190,6 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         const newFilterDevice = devices.filter(i => {
             return optionsFilter(i)
         })
-        console.log(stateFilter)
         setFilterDevice(newFilterDevice)
     }, [stateFilter]);
 
@@ -187,6 +222,14 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
     }, [stateFilter.color, stateFilter.loop]);
 
     useEffect(() => {
+        const filterDeviceColor = devices.filter(device=>device.device_color_id===stateFilter.color)
+        if(filterDeviceColor){
+            setColorFilterDevice(filterDeviceColor)
+        }
+    }, [stateFilter.color]);
+
+
+    useEffect(() => {
         filterOptions(devices, setState)
         const firstDevice = devices[0];
         if(firstDevice){
@@ -216,56 +259,32 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                                 alt={`${namePhoto}`}
                         />:null}
                     </div>
-                    <span className={style.deviceCardMainSelectTitle}>Сделайте выбор</span>
-                    {state.color.length?<FilterCard
-                        stateFilter={stateFilter}
-                        title={'Цвет:'}
-                        listFilter={state.color}
-                        handleStateFilter={handleStateFilter}
-                        idItem={'device_color_id'}
-                        stateName={'color'}
-                        colorData={colorData}
-                    />:null}
                 </div>
                 <div className={style.deviceCardFooter}>
-                    {state.memory.length?<FilterCard
-                        stateFilter={stateFilter}
-                        title={'Память:'}
-                        listFilter={state.memory}
-                        handleStateFilter={handleStateFilter}
-                        idItem={'memory'}
-                        stateName={'memory'}
-                    />:null}
-                    {state.connection.length?<FilterCard
-                        stateFilter={stateFilter}
-                        title={'Связь:'}
-                        listFilter={state.connection}
-                        handleStateFilter={handleStateFilter}
-                        idItem={'connection'}
-                        stateName={'connection'}
-                    />:null}
-                    {state.loop.length?<FilterCard
-                        stateFilter={stateFilter}
-                        title={'Ремешок:'}
-                        listFilter={state.loop}
-                        handleStateFilter={handleStateFilter}
-                        idItem={'loop'}
-                        stateName={'loop'}
-                    />:null}
-                    {state.country.length?<FilterCard
-                        stateFilter={stateFilter}
-                        title={'Страна:'}
-                        listFilter={state.country}
-                        handleStateFilter={handleStateFilter}
-                        idItem={'country'}
-                        stateName={'country'}
-                    />:null}
+                    {filterList.map((item, index)=> {
+                        const {title, slug, id} = item
+                        if(state[slug].length){
+                            return (
+                                <FilterCard
+                                    key={index}
+                                    colorFilterDevice={colorFilterDevice}
+                                    stateFilter={stateFilter}
+                                    title={title}
+                                    listFilter={state[slug]}
+                                    handleStateFilter={handleStateFilter}
+                                    idItem={id}
+                                    stateName={slug}
+                                    colorData={slug==='color'?colorData:null}
+                                />
+                            )
+                        }
+                    })}
                     <div className={style.deviceCardFooterPriceBox}>
                        <span>{priceFormated()?priceFormated():''}</span>
                         <button
                             onClick={handleSaveBasket}
                         >
-                            {buyBtnState?'Уточнить о наличие':'Оформить заказ'}
+                            {buyBtnState?'Запросить стоимость':'Оформить заказ'}
                         </button>
                     </div>
                 </div>
