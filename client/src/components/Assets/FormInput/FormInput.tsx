@@ -11,6 +11,9 @@ type InputProps = {
     stateForm: stateFormProps
 }
 
+
+
+
 const FormInput:React.FC<InputProps> = (
     {
         inputData,
