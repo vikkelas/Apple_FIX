@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {v4 as uuidv4} from 'uuid';
 import {ResponseDeviceColorI, ResponseDeviceI} from "@/interface/ResponseInterface";
 import ColorPin from "@/components/Assets/ColorPin";
@@ -28,7 +28,6 @@ const FilterCard:React.FC<PropsFilter> = (
         stateFilter,
         colorFilterDevice
     }) => {
-
 
     return (
         <ul className={style.filterList}>
@@ -104,7 +103,7 @@ const FilterCard:React.FC<PropsFilter> = (
                         ])}
                     >
                         {typeof item==='string'&&stateName!=='memory'?item:null}
-                        {stateName==='memory'?+item>100?`${item}Гб`:`${item}Тб`:null}
+                        {stateName==='memory'?+item>63?`${item}Гб`:`${item}Тб`:null}
                         {colorItem!==null?<ColorPin
                             firstColor={colorItem.first_color}
                             secondColor={colorItem.second_color}

@@ -112,16 +112,6 @@ const ModelCard:React.FC<{model:ResponseTypeModelI, colors:ResponseDeviceColorI[
                             })}
                         </ul>
                     </div>:null}
-                    {stateCard.connection.length?<div className={style.cardFooterMemory}>
-                        <span>Связь:</span>
-                        <ul className={style.cardFooterMemoryList}>
-                            {stateCard.connection.map(item=>{
-                                return (
-                                    <li key={uuidv4()}>{item}</li>
-                                )
-                            })}
-                        </ul>
-                    </div>:null}
                     <div className={style.cardFooterPriceBox}>
                         <span>от {price}</span>
                         <Link className={style.cardFooterPriceBoxBtn} href={`/shop/${type}/${model.slug}`}>Выбрать</Link>

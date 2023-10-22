@@ -144,6 +144,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         const checkArr = []
         for (const filterItem in stateFilter) {
             if(stateFilter[filterItem]&&filterItem!=="price"){
+                console.log(filterItem)
                 switch (filterItem){
                     case ("color"):
                         if(i.device_color_id)checkArr.push(i.device_color_id===stateFilter[filterItem]);
@@ -155,12 +156,16 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                     case ("memory"):
                         if(i.memory)checkArr.push(+(i.memory.replace(/\D/g, ''))===stateFilter[filterItem]);
                         break;
+                    case ("connection"):
+                        if(i.wifi)checkArr.push(i.wifi===stateFilter['connection']);
+                        break;
                     default:
                         // @ts-ignore
                         checkArr.push(i[filterItem]===stateFilter[filterItem]);
                 }
             }
         }
+        console.log(checkArr)
         checkArr.forEach(i => {
             if (!i) {
                 check = false
@@ -194,6 +199,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
     }, [stateFilter]);
 
     useEffect(() => {
+        console.log(filterDevice)
         if(filterDevice.length===1){
             const deviceSelect = filterDevice[0]
             setState((prevState)=>({...prevState, price: deviceSelect.price}));
