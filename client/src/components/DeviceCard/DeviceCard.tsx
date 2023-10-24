@@ -144,7 +144,6 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
         const checkArr = []
         for (const filterItem in stateFilter) {
             if(stateFilter[filterItem]&&filterItem!=="price"){
-                console.log(filterItem)
                 switch (filterItem){
                     case ("color"):
                         if(i.device_color_id)checkArr.push(i.device_color_id===stateFilter[filterItem]);
@@ -165,7 +164,6 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                 }
             }
         }
-        console.log(checkArr)
         checkArr.forEach(i => {
             if (!i) {
                 check = false
@@ -286,7 +284,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                         }
                     })}
                     <div className={style.deviceCardFooterPriceBox}>
-                       <span>{priceFormated()?priceFormated():''}</span>
+                       <span>{(priceFormated()&&filterDevice[0].type_price)?'от':null} {priceFormated()?priceFormated():''}</span>
                         <button
                             onClick={handleSaveBasket}
                         >

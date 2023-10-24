@@ -10,7 +10,7 @@ const TemplatePageData:TemplateDataI = {
     "about-us": {
         title: "Apple Fix",
         subtitle: "в Сергиевом Посаде",
-        description: "Нам доверяют более <strong>10 000</strong> клиентов!",
+        description: "Нам доверяют более <strong>10&nbsp;000</strong>&nbsp;клиентов!",
         icon: "man_hello"
     },
     "trade-in":{
@@ -24,19 +24,19 @@ const TemplatePageData:TemplateDataI = {
     "guarantee":{
         title: "Гарантия",
         subtitle: "в сервисе и магазине",
-        description: "Нам доверяют более <strong>10 000</strong> клиентов!",
+        description: "Нам доверяют более <strong>10&nbsp;000</strong>&nbsp;клиентов!",
         icon: "guard",
     },
     "delivery":{
         title: "Доставка",
         subtitle: "товаров и запчастей",
-        description: "Нам доверяют более <strong>10 000</strong> клиентов!",
+        description: "Нам доверяют более <strong>10&nbsp;000</strong>&nbsp;клиентов!",
         icon: "delivery",
     },
     "pay":{
         title: "Оплата",
         subtitle: "товаров и услуг",
-        description: "Нам доверяют более <strong>10 000</strong> клиентов!",
+        description: "Нам доверяют более <strong>10&nbsp;000</strong>&nbsp;клиентов!",
         icon: "hand_many",
     },
     "cashback":{
@@ -48,15 +48,15 @@ const TemplatePageData:TemplateDataI = {
     "reviews":{
         title: "Отзывы",
         subtitle: "о сервисе и магазине",
-        description: "Нам доверяют более <strong>10 000</strong> клиентов!\n" +
-            "Мы работаем уже <strong>10</strong> лет!",
+        description: "Нам доверяют более <strong>10&nbsp;000</strong>&nbsp;клиентов!\n" +
+            "Мы работаем уже <strong>10</strong>&nbsp;лет!",
         icon: "like_hand",
     },
     "contacts":{
         title: "Контакты",
         subtitle: "Apple Fix",
-        description: "Нам доверяют более <strong>10 000</strong> клиентов!\n" +
-            "Мы работаем уже <strong>10</strong> лет!",
+        description: "Нам доверяют более <strong>10&nbsp;000</strong>&nbsp;клиентов!\n" +
+            "Мы работаем уже <strong>10</strong>&nbsp;лет!",
         icon: "addres_book",
     }
 }
