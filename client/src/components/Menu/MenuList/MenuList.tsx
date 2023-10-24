@@ -24,7 +24,7 @@ const MenuList:React.FC<Props> = ({menuLust, setActiveMenu}) => {
                 animate={{opacity: 1, y: 0}}
                 exit={{opacity: 0, y: 100}}
                 className={style.containerMenuList}>
-                <AnimatePresence key={'menuLists'} mode={"wait"}>
+                <AnimatePresence key={'menuLists'}>
                     {menuLust.map((item, index)=>{
                         if(item.type==="service" && !item.subMenu?.length)return;
                         return (

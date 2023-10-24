@@ -25,7 +25,7 @@ const MenuItem:React.FC<
             }
         }),
         hidden: {
-            x: -100,
+            x: -50,
             opacity: 0,
         }
     }
@@ -75,7 +75,7 @@ const MenuItem:React.FC<
                     </motion.div>
                 }
             </div>
-            <AnimatePresence mode={"wait"}>
+            <AnimatePresence>
                 {
                     subMenuHidden&&subMenu?
                         <motion.ul
@@ -83,7 +83,9 @@ const MenuItem:React.FC<
                             initial={{opacity: 0, height: 0, marginTop: 0}}
                             animate={{opacity: 1, height: "auto", marginTop:"10px"}}
                             exit={{opacity: 0, height: 0, marginTop: 0}}
-                            className={style.itemMenuSubList}>
+                            className={style.itemMenuSubList}
+                            onClick={()=> setActiveMenu(null)}
+                            >
                             {subMenu.map(item=>
                                 <Link
                                     key={uuidv4()}

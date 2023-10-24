@@ -21,7 +21,9 @@ class DeviceModel extends Model
 
     public function deviceServices(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(DeviceService::class)->orderBy('hits', 'desc');
+        return $this->hasMany(DeviceService::class)
+            ->orderBy('hits', 'desc')
+            ->orderBy('id', 'asc');
     }
 
     public function deviceType(): \Illuminate\Database\Eloquent\Relations\BelongsTo

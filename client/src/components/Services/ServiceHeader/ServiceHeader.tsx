@@ -19,7 +19,7 @@ const ServiceHeader:React.FC<{
         <motion.div
             style={{
                 height: `${fullList?heightTitle-35:heightTitle}px`,
-                padding: `${fullList?10:0}px 0`
+                padding: `${fullList?30:0}px 0`
             }}
             ref={ref}
             className={style.header}>
