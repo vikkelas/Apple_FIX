@@ -102,8 +102,8 @@ const Layout:React.FC<LayoutProps> = ({description, title, keywords='', children
                 {!horizontal?
                     <>
                         <div className={'container_content'}>
-                        {children}
-                    </div>
+                            {children}
+                        </div>
                         <NavigateMenu
                             activeMenu={activeMenu}
                             setMenu={setMenu}
