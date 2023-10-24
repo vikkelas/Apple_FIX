@@ -17,7 +17,8 @@ const MenuList:React.FC<Props> = ({menuLust, setActiveMenu}) => {
             animate={{opacity: 1 }}
             exit={{opacity: 0}}
             className={style.container}
-            onClick={()=>setActiveMenu(null)}>
+            onClick={()=>setActiveMenu(null)}
+        >
             <motion.ul
                 onClick={(e)=>e.stopPropagation()}
                 initial={{opacity: 0, y: 100}}
