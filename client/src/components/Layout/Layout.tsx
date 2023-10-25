@@ -64,8 +64,9 @@ const Layout:React.FC<LayoutProps> = ({description, title, keywords='', children
     }
 
     const resizeHandler = () => {
-        const { clientHeight, clientWidth } = targetRef.current || {};
-        setSize({ height: clientHeight??0, width: clientWidth??0 });
+        const height = window.screen.availHeight;
+        const width = window.screen.availWidth;
+        setSize({ height: height??0, width: width??0 });
     };
 
     useEffect(() => {
