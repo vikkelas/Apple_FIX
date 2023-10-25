@@ -12,7 +12,6 @@ export interface ResponseDeviceI {
     price: number;
     device_model_id: number;
     device_color_id: number;
-    type_price: boolean;
 }
 
 export interface ResponseServicesI {
@@ -22,6 +21,7 @@ export interface ResponseServicesI {
     price: number;
     time: string;
     hits: boolean;
+    type_price: boolean;
 }
 
 export interface ResponseTypeModelI {

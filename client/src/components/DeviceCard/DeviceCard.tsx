@@ -91,6 +91,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
             id: "country"
         }
     ]
+
     const priceFormated = () => {
         if (state.price){
             return new Intl.NumberFormat('ru-RU', {
@@ -284,7 +285,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                         }
                     })}
                     <div className={style.deviceCardFooterPriceBox}>
-                       <span>{(priceFormated()&&filterDevice[0].type_price)?'от':null} {priceFormated()?priceFormated():''}</span>
+                       <span>{priceFormated()?priceFormated():''}</span>
                         <button
                             onClick={handleSaveBasket}
                         >

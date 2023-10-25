@@ -11,7 +11,7 @@ import {ServiceOrderI} from "@/redux/interface/OrderInterface";
 const ServicesItem:React.FC<{item:ResponseServicesI, modelName: string}> = ({item, modelName}) => {
     const dispatch = useDispatch();
     const router = useRouter();
-    const {title, description, price, time} = item;
+    const {title, description, price, time, type_price} = item;
 
     const priceFormated = new Intl.NumberFormat('ru-RU', {
         style: 'currency',
@@ -41,7 +41,7 @@ const ServicesItem:React.FC<{item:ResponseServicesI, modelName: string}> = ({ite
                 <p>{description}</p>
             </div>
             <div className={clsx([style.serviceBox, style.price])}>
-                <h2 className={style.serviceBoxPrice}>{priceFormated}</h2>
+                <h2 className={style.serviceBoxPrice}>{type_price?'от':null} {priceFormated}</h2>
                 <p className={style.serviceBoxTime}>{time}</p>
             </div>
         </li>

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('devices', function (Blueprint $table) {
+        Schema::table('device_services', function (Blueprint $table) {
             $table->boolean('type_price')->default(false);
         });
     }
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('devices', function (Blueprint $table) {
-            $table->dropColumn('type_price');
+        Schema::table('device_services', function (Blueprint $table) {
+            //
         });
     }
 };
