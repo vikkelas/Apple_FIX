@@ -25,10 +25,6 @@ const Layout:React.FC<LayoutProps> = ({description, title, keywords='', children
     const [activeMenu, setActiveMenu] = useState<string |null>(null)
     const [listMenu, setListMenu] = useState<null | MenuI[]>(null)
     const [horizontal, setHorizontal] = useState(false)
-    const [size, setSize] = useState({
-        height: 0,
-        width: 0
-    })
     const setMenu = (e:any) => {
         const menu_item = e.currentTarget.id
         if(menu_item===activeMenu){
@@ -64,28 +60,21 @@ const Layout:React.FC<LayoutProps> = ({description, title, keywords='', children
     }
 
     const resizeHandler = () => {
-        const height = window.screen.availHeight;
-        const width = window.screen.availWidth;
-        setSize({ height: height??0, width: width??0 });
+        const angel = window.screen.orientation.angle;
+        if(angel===270 || angel === 90){
+            setHorizontal(true)
+        }else if(!angel || angel === 0){
+            setHorizontal(false)
+        }
     };
 
     useEffect(() => {
-        window.addEventListener('orientationchange', resizeHandler)
-        // window.addEventListener("resize", resizeHandler);
+        screen.orientation.addEventListener("change", resizeHandler);
         return () => {
-            // window.removeEventListener("resize", resizeHandler);
-            window.removeEventListener('orientationchange', resizeHandler)
+            screen.orientation.removeEventListener("change", resizeHandler);
         };
     }, []);
 
-    useEffect(() => {
-        const {width, height} = size;
-        if(width>height){
-            setHorizontal(true)
-        }else{
-            setHorizontal(false)
-        }
-    }, [size]);
 
     useEffect(() => {
         if(!typesMenu){
