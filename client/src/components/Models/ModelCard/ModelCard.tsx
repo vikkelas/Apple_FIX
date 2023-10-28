@@ -107,7 +107,7 @@ const ModelCard:React.FC<{model:ResponseTypeModelI, colors:ResponseDeviceColorI[
                         <ul className={style.cardFooterMemoryList}>
                             {stateCard.memory.map(size=>{
                                 return (
-                                    <li key={uuidv4()}>{+size>100?`${size}Гб`:`${size}Тб`}</li>
+                                    <li key={uuidv4()}>{+size>63?`${size}Гб`:`${size}Тб`}</li>
                                 )
                             })}
                         </ul>

@@ -71,15 +71,16 @@ const Layout:React.FC<LayoutProps> = ({description, title, keywords='', children
 
     useEffect(() => {
         window.addEventListener('orientationchange', resizeHandler)
-        // window.addEventListener("resize", resizeHandler);
+        window.addEventListener("resize", resizeHandler);
         return () => {
-            // window.removeEventListener("resize", resizeHandler);
+            window.removeEventListener("resize", resizeHandler);
             window.removeEventListener('orientationchange', resizeHandler)
         };
     }, []);
 
     useEffect(() => {
         const {width, height} = size;
+
         if(width>height){
             setHorizontal(true)
         }else{
