@@ -3,9 +3,6 @@ export interface ResponseDeviceI {
     memory: null|string;
     country: null|string;
     wifi: null|string;
-    proc: null|string,
-    conf: null|string;
-    size: null|string;
     loop_type: null|string;
     loop_size: null|string;
     year: null|string;

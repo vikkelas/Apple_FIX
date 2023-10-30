@@ -25,7 +25,7 @@
         gap: 15px
         &Image
             position: relative
-            height: 266px
+            height: 250mmitpx
             display: flex
             align-items: center
             img
@@ -33,15 +33,17 @@
                 width: auto
                 object-fit: contain
         &Colors
+            height: 42px
             display: flex
             gap: 10px
-            align-items: center
+            align-items: flex-start
             span
                 @include LightText
-                padding-bottom: 2px
+                padding-bottom: 0
             &List
-                gap: 15px
+                gap: 0 15px
                 display: flex
+                flex-wrap: wrap
     &Footer
         display: flex
         flex-direction: column
