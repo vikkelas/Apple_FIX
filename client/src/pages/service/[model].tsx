@@ -20,7 +20,10 @@ export async function getServerSideProps(ctx) {
 const Model:NextPage<{model_device:ResponseTypeModelI}> = ({model_device}) => {
 
     return (
-        <Layout title={''} description={''} keywords={''}>
+        <Layout
+            title={`Ремонт и обслуживание ${model_device.title} в Apple Fix — Сергиев Посад`}
+            description={`У Вас ${model_device.title}? Отремонтируем уже сегодня! Большая и честная гарантия. Все запчасти в наличии. Мы специализируемся только на технике Apple!`}
+            keywords={''}>
             <div className={'container'}>
                 <Services model_device={model_device}/>
             </div>

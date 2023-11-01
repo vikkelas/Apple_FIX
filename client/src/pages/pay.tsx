@@ -5,7 +5,10 @@ import TextList from "@/components/TemplatesPage/TextList/TextList";
 
 const Pay = () => {
     return (
-        <Layout description={''} title={''} keywords={''}>
+        <Layout
+            description={'Мы постарались создать максимум удобства при оплате любых услуг и товаров в сервисном центре Apple Fix.'}
+            title={'Условия оплаты в Apple Fix — Сергиев Посад'}
+            keywords={''}>
             <PageTamplate>
                 <TextList kelList={"pay"}/>
             </PageTamplate>

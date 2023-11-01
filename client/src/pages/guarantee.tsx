@@ -5,7 +5,10 @@ import TextBox from "@/components/TemplatesPage/TextBox/TextBox";
 
 const Guarantee = () => {
     return (
-        <Layout description={''} title={''} keywords={''}>
+        <Layout
+            description={'Честная и длительная гарантия на услуги и товары в сервисном центре Apple Fix.'}
+            title={'Гарантийные условия в Apple Fix — Сергиев Посад'}
+            keywords={''}>
             <PageTamplate>
                 <TextBox keyData={"guarantee"}/>
             </PageTamplate>

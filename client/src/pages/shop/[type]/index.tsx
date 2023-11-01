@@ -27,7 +27,7 @@ export async function getServerSideProps(ctx: { params: { type: string; }; }){
 
 const Index:NextPage<{typeData:ResponseTypesI, colorData:ResponseDeviceColorI[] }> = ({typeData, colorData}) => {
     return (
-        <Layout title={''} description={''} keywords={''}>
+        <Layout title={'Купить новый iPhone, iPad, MacBook в Apple Fix'} description={'Купить новый оригинальный iPhone в Сергиевом Посаде вам помогут в Apple Fix. Быстрая доставка и гарантия 1 год!'} keywords={''}>
             <>
                 {/*<section className={'container'} style={{paddingBottom: "0"}}>*/}
                 {/*    <h1 className={'titleHevy'}>Новая оригинальная<br/>*/}

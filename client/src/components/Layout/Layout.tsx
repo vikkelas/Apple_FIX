@@ -12,13 +12,18 @@ import {AppState} from "@/redux/rootReducer";
 import {changeState} from "@/redux/reducers/menuSlice";
 
 type LayoutProps = {
-    description: string;
+    description?: string;
     keywords?: string;
-    title: string;
+    title?: string;
     children: ReactElement;
 }
 
-const Layout:React.FC<LayoutProps> = ({description, title, keywords='', children}) => {
+const Layout:React.FC<LayoutProps> = (
+    {
+        description="Профессиональный срочный ремонт iPhone в Сергиевом Посаде. Новая оригинальная техника Apple. Честный сервисный центр!",
+        title='Магазин и сервис Apple Fix в Сергиевом Посаде', keywords='',
+        children
+    }) => {
     const targetRef = useRef<HTMLElement | null>(null);
     const {typesMenu} = useSelector((state:AppState)=>state.menu)
     // const [typesModels, setTypesModals] = useState<null|ResponseTypesI[]>(null)

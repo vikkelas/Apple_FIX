@@ -25,8 +25,17 @@ export const getServerSideProps = (async (ctx)=>{
 });
 
 const Index:NextPage<{modelItem:ResponseTypeModelI, colorData:ResponseDeviceColorI[]}> = ({modelItem, colorData}) => {
+    let minPrice = 1000000
+    modelItem.devices.forEach(item=>{
+        if(item.price<minPrice){
+            minPrice=item.price
+        }
+    })
     return (
-        <Layout description={''} keywords={''} title={''}>
+        <Layout
+            description={`Лучшая цена — от ${minPrice}! Быстрая доставка, честная гарантия. Только новая орининальная продукция. Оплатить ${modelItem.title} можно любым способом!`}
+            keywords={''}
+            title={`Купить ${modelItem.title} в Сергиевом Посаде`}>
             <DeviceCard
                 modelDevice={modelItem}
                 colorData={colorData}

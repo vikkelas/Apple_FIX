@@ -25,7 +25,10 @@ const Reviews = () => {
         '                    </a>\n' +
         '                </div>'
     return (
-        <Layout description={''} title={''} keywords={''}>
+        <Layout
+            description={'Ознакомьтесь с реальными отзывами наших клиентов. Работаем уже 10 лет в Сергиевом Посаде!'}
+            title={'Отзывы о сервисном центре Apple Fix в Сергиевом Посаде'}
+            keywords={''}>
             <PageTamplate children={null}/>
             <div
                 className={clsx(['container', 'listBox'])}

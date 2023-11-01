@@ -5,7 +5,7 @@ import ContactsTemplate from "@/components/TemplatesPage/ContactsTemplate/Contac
 
 const Contacts = () => {
     return (
-        <Layout description={''} title={''} keywords={''}>
+        <Layout description={'Профессиональный ремонт техники Apple по доступным ценам. Находимся на Воробьевке, работаем ежедневно с 10:00 до 20:00.'} title={'Контакты — сервисный центр Apple Fix в Сергиевом Посаде'} keywords={''}>
             <PageTamplate>
                 <ContactsTemplate/>
             </PageTamplate>

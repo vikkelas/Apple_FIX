@@ -5,7 +5,10 @@ import TextBox from "@/components/TemplatesPage/TextBox/TextBox";
 
 const Delivery = () => {
     return (
-        <Layout description={''} title={''} keywords={''}>
+        <Layout
+            description={'Быстрая доставка новой оригинальной техники Apple в Сергиев Посад. Почти всегда доставка занимает всего 1 день!'}
+            title={'Условия по доставке в Apple Fix — Сергиев Посад'}
+            keywords={''}>
             <PageTamplate>
                 <TextBox keyData={"delivery"}/>
             </PageTamplate>

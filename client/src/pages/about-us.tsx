@@ -5,7 +5,10 @@ import ListTemplate from "@/components/TemplatesPage/ListTemplate/ListTemplate";
 
 const AboutUsPage = () => {
     return (
-        <Layout description={''} title={''} keywords={''}>
+        <Layout
+            description={'Профессиональный срочный ремонт техники Apple. Лучшее качество запчастей. Новая оригинальная техника Apple!'}
+            title={'Стандарты компании Apple Fix в Сергиевом Посаде'}
+            keywords={''}>
             <PageTamplate>
                 <ListTemplate keyList={"about-us"}/>
             </PageTamplate>

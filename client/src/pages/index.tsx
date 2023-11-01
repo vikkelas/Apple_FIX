@@ -9,7 +9,7 @@ import SocialMedia from "@/components/Assets/SocialMedia/SocialMedia";
 
 const Home = () => {
     return (
-        <Layout description={''} title={''} keywords={''}>
+        <Layout>
                <div className={ clsx(['container', style.container])}>
                    <section className={style.tradeIn}>
                        <div className={style.tradeInBox}>

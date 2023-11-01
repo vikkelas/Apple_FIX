@@ -5,7 +5,10 @@ import CashbackTemplate from "@/components/TemplatesPage/CashbackTemplate/Cashba
 
 const Cashback = () => {
     return (
-        <Layout description={''} title={''} keywords={''}>
+        <Layout
+            description={'Кэшбэк, которым можно оплачивать до 50% стоимости покупки! Оформите накопительную карту и получайте кэшбэк до 10% со следующей покупки!'}
+            title={'Кэшбэк с каждой покупки и ремонта в Apple Fix'}
+            keywords={''}>
             <PageTamplate>
                 <CashbackTemplate/>
             </PageTamplate>
