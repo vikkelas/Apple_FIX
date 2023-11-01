@@ -1,6 +1,21 @@
 import React from 'react';
 import Layout from "@/components/Layout/Layout";
 import PageTamplate from "@/components/Assets/PageTamplate/PageTamplate";
+import ReviewBox, {reviews} from "@/components/Assets/ReviewBox/ReviewBox";
+import clsx from "clsx";
+
+const reviePlace:reviews[] = [
+    {
+        title: 'Яндекс.Карты',
+        link: 'https://yandex.ru/maps/org/apple_fix/1279673815/',
+        icon: "yandex.png"
+    },
+    {
+        title: 'Вконтакте',
+        link: 'https://vk.com/topic-43053901_27041378?offset=140',
+        icon: "vk.png"
+    }
+]
 
 const Reviews = () => {
     const iframe = ' <div style="width:max-content;max-height:100%;overflow:hidden;position:relative;">\n' +
@@ -11,9 +26,17 @@ const Reviews = () => {
         '                </div>'
     return (
         <Layout description={''} title={''} keywords={''}>
-            <PageTamplate>
-                <div dangerouslySetInnerHTML={{__html: iframe} } />
-            </PageTamplate>
+            <PageTamplate children={null}/>
+            <div
+                className={clsx(['container', 'listBox'])}
+            >
+                {reviePlace.map((item, index)=>{
+                    const {title, link, icon} = item;
+                    return (
+                        <ReviewBox key={index} link={link} title={title} icon={icon}/>
+                    );
+                })}
+            </div>
         </Layout>
     );
 };

@@ -12,7 +12,7 @@ const respColors = (colorsDB:ResponseDeviceColorI[], colorId: number): {name: st
 }
 
 const getNamePhoto = (typeName: string, color:string, longName: boolean | undefined = false) => {
-    return `${typeName.replace(/\./g, '_').split(' ').join('-')}-${longName?color.split(' ').join('-'):color}.jpg`.toLowerCase()
+    return `${typeName.replace(/\./g, '_').trimStart().trimEnd().split(' ').join('-')}-${longName?color.split(' ').join('-'):color}.jpg`.toLowerCase()
 }
 
 const minimumPrice = (priceList: number[]):number => {

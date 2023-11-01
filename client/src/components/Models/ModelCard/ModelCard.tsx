@@ -79,13 +79,14 @@ const ModelCard:React.FC<{model:ResponseTypeModelI, colors:ResponseDeviceColorI[
                         src={`/images/${type}/${namePhoto}`}
                         alt={'device'}
                         fill
-                        sizes={'50vw'}
+                        sizes={'100vw'}
+                        quality={100}
                     />:null}
                 </div>
                 <div className={style.cardMainColors}>
                     <span>Цвета:</span>
                     <ul className={style.cardMainColorsList}>
-                        {stateCard.color.length&&stateCard.color.map((item, index)=>{
+                        {stateCard.color.length&&stateCard.color.slice(0,6).map((item, index)=>{
                             const colorPin = colors.findIndex(i=>i.id===item)
                             if(colorPin!==-1){
                                 return (

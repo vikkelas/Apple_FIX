@@ -7,7 +7,7 @@ import {changeState} from "@/redux/reducers/orderSlice";
 import {useRouter} from "next/router";
 import {TemplatePageData} from "@/data/TemplatePageData";
 
-const PageTamplate:React.FC<{ children: ReactElement; }> = ({children}) => {
+const PageTamplate:React.FC<{ children: ReactElement|null; }> = ({children}) => {
     const dispatch = useDispatch();
     const router = useRouter();
     const pageName = router.asPath.split('/')[1]

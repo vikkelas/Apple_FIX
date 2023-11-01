@@ -258,6 +258,7 @@ const DeviceCard:React.FC<{modelDevice:ResponseTypeModelI, colorData:ResponseDev
                     <div className={style.deviceCardMainPhoto}>
                         {namePhoto?
                             <Image
+                                quality={100}
                                 className={clsx([router.query.type==='apple-watch'&&style.scale])}
                                 src={`/images/${type}/${namePhoto}`}
                                 fill
